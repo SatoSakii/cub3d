@@ -6,7 +6,7 @@
 #    By: albernar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 17:32:26 by albernar          #+#    #+#              #
-#    Updated: 2025/02/25 19:54:42 by stetrel          ###   ########.fr        #
+#    Updated: 2025/02/25 20:19:01 by albernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ $(LIBFT_PATH)/libft.a:
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	@echo " $(CYAN)$(BOLD)$(ITALIC)■$(RESET)  compiling	$(GRAY)$(BOLD)$(ITALIC)$^$(RESET)"
-	@$(CC) $(FLAGS) -I./includes -o $@ -c $<
+	@$(CC) $(FLAGS) -Iincludes -Ilib/libft/includes -Ilib/MacroLibX/includes -o $@ -c $<
 	
 clean:
 	@make clean -C $(LIBFT_PATH) -s

@@ -6,13 +6,14 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:47:13 by albernar          #+#    #+#             */
-/*   Updated: 2025/02/25 19:49:19 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/02/25 20:18:32 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# include "../lib/libft/includes/libft.h"
+# include "libft.h"
+# include "mlx.h"
 # include "error.h"
 # include "colors.h"
 # include <unistd.h>
