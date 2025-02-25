@@ -75,9 +75,33 @@ t_bool	map_isvalid(char **map, t_error_ctx *ctx, t_game *game)
 			if (ft_strchr(MAP_DIRECTIONS, tile))
 			{
 				direction_count++;
-				game->player.x = x;
-				game->player.y = y;
-				game->player.dir = tile;
+				game->player.pos.x = x + 0.5;
+				game->player.pos.y = y + 0.5;
+				if (tile == 'N' || tile == 'S')
+				{
+					game->player.plane.x = 0.70;
+					game->player.plane.y = 0;
+					game->player.dir.y = -1;
+					if (tile == 'S')
+					{
+						game->player.plane.x = -0.70;
+						game->player.dir.y = 1;
+					}
+					game->player.dir.x = 0;
+				}
+				else if (tile == 'W' || tile == 'E')
+				{
+					game->player.plane.y = 0.70;
+					game->player.plane.x = 0;
+					game->player.dir.x = 1;
+					if (tile == 'W')
+					{
+						game->player.plane.y = -0.70;
+						game->player.plane.x = 0;
+						game->player.dir.x = -1;
+					}
+					game->player.dir.y = 0;
+				}
 				if (direction_count > 1)
 					break ;
 			}

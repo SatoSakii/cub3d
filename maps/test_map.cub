@@ -1,9 +1,9 @@
 C 	25,0,25
-WE test.cub
-EA test.cub
-SO test.cub
+WE maps/test_map.cub
+EA maps/test_map.cub
+SO maps/test_map.cub
 F 00000,00000,00000
-NO test.cub
+NO maps/test_map.cub
 
 11111
 11111

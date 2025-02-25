@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:47:13 by albernar          #+#    #+#             */
-/*   Updated: 2025/02/25 20:18:32 by albernar         ###   ########.fr       */
+/*   Updated: 2025/02/25 21:05:17 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "mlx.h"
 # include "error.h"
 # include "colors.h"
+# include "hooks.h"
+# include "render.h"
 # include <unistd.h>
 # include <fcntl.h>
 # include <errno.h>
@@ -38,11 +40,17 @@ typedef struct s_colors
 	int	b;
 }	t_colors;
 
+typedef struct s_vec
+{
+	double	x;
+	double	y;
+}	t_vec;
+
 typedef struct s_player
 {
-	int		x;
-	int		y;
-	char	dir;
+	t_vec	dir;
+	t_vec	pos;
+	t_vec	plane;
 }	t_player;
 
 typedef struct s_map
@@ -61,6 +69,7 @@ typedef struct s_game
 	t_colors	floor;
 	t_player	player;
 	t_map		map;
+	t_mlx		mlx;
 }	t_game;
 
 typedef enum s_bool

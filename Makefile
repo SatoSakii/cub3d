@@ -6,7 +6,7 @@
 #    By: albernar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 17:32:26 by albernar          #+#    #+#              #
-#    Updated: 2025/02/25 20:19:01 by albernar         ###   ########.fr        #
+#    Updated: 2025/02/25 20:50:34 by stetrel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC 		:= cc
 FLAGS 	:= -Wall -Wextra -Werror -g
 
 # FOLDERS
-OBJ_DIR = .objs
+OBJ_DIR = .build
 SRC_DIR	= srcs
 
 # SOURCES
@@ -32,6 +32,8 @@ SRCS 	:= 	main.c \
 			parsing/error/error_ctx.c \
 			parsing/error/error_print.c \
 			parsing/map/parse_map.c \
+			render/cub_mlxinit.c \
+			hooks/key_hooks.c \
 
 SRCS	:=	$(addprefix $(SRC_DIR)/, $(SRCS))
 

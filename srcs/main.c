@@ -6,11 +6,13 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:01:53 by albernar          #+#    #+#             */
-/*   Updated: 2025/02/25 14:35:52 by albernar         ###   ########.fr       */
+/*   Updated: 2025/02/25 21:06:51 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "mlx.h"
+#include "render.h"
 
 int	parse_file(int argc, char **argv, t_error_ctx *ctx, t_game *game)
 {
@@ -37,6 +39,8 @@ int	parse_file(int argc, char **argv, t_error_ctx *ctx, t_game *game)
 	return (err);
 }
 
+
+
 int	main(int argc, char **argv)
 {
 	t_error_ctx	ctx;
@@ -51,17 +55,11 @@ int	main(int argc, char **argv)
 		free_game(&game);
 		return (1);
 	}
-	ft_dprintf(2, "parsing success\n");
-	ft_dprintf(2, "NO Tex : %s\n", game.no.path);
-	ft_dprintf(2, "SO Tex : %s\n", game.so.path);
-	ft_dprintf(2, "WE Tex : %s\n", game.we.path);
-	ft_dprintf(2, "EA Tex : %s\n", game.ea.path);
-	ft_dprintf(2, "Floor : (%d, %d, %d)\n", game.floor.r,
-		game.floor.g, game.floor.b);
-	ft_dprintf(2, "Ceiling : (%d, %d, %d)\n\n", game.ceiling.r,
-		game.ceiling.g, game.ceiling.b);
-	for (int i = 0; game.map.grid[i]; i++)
-		ft_printf("%s", game.map.grid[i]);
+	init_mlx(&game.mlx);
+	mlx_on_event(game.mlx.mlx, game.mlx.win, MLX_KEYDOWN, key_hook, &game);
+	mlx_loop(game.mlx.mlx);
+	mlx_destroy_window(game.mlx.mlx, game.mlx.win);
+	mlx_destroy_context(game.mlx.mlx);
 	free_game(&game);
 	return (0);
 }
