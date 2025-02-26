@@ -6,11 +6,12 @@
 /*   By: stetrel <stetrel@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 20:32:21 by stetrel           #+#    #+#             */
-/*   Updated: 2025/02/25 20:55:16 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/02/26 14:27:36 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <render.h>
+#include "cub3d.h"
+#include "render.h"
 
 void	init_mlx(t_mlx *mlx)
 {    

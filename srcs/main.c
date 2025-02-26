@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:01:53 by albernar          #+#    #+#             */
-/*   Updated: 2025/02/25 21:06:51 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/02/26 14:47:53 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	main(int argc, char **argv)
 	}
 	init_mlx(&game.mlx);
 	mlx_on_event(game.mlx.mlx, game.mlx.win, MLX_KEYDOWN, key_hook, &game);
+	draw_player(&game);
 	mlx_loop(game.mlx.mlx);
 	mlx_destroy_window(game.mlx.mlx, game.mlx.win);
 	mlx_destroy_context(game.mlx.mlx);

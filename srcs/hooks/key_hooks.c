@@ -6,16 +6,18 @@
 /*   By: stetrel <stetrel@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 20:49:43 by stetrel           #+#    #+#             */
-/*   Updated: 2025/02/25 21:07:22 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/02/26 14:48:48 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "mlx.h"
+#include "render.h"
 #include <stdio.h>
 #include <SDL2/SDL_scancode.h>
 #include <math.h>
 
-#define MOVE_SPEED 0.1
+#define MOVE_SPEED 1.1
 #define ROT_SPEED 0.1
 
 void    move_forward(t_player *player)
@@ -43,7 +45,7 @@ void    move_left(t_player *player)
     player->pos.y -= player->plane.y * MOVE_SPEED;
 }
 
-void	rotate_right(t_player *player)
+void	rotate_left(t_player *player)
 {
 	double	old_dir_x;
 	double	old_plane_x;
@@ -56,7 +58,7 @@ void	rotate_right(t_player *player)
     player->plane.y = old_plane_x * sin(-ROT_SPEED) + player->plane.y * cos(-ROT_SPEED);
 }
 
-void	rotate_left(t_player *player)
+void	rotate_right(t_player *player)
 {
 	double	old_dir_x;
 	double	old_plane_x;
@@ -74,19 +76,23 @@ void key_hook(int key, void* param)
 	t_game	*game;
 
 	game = (t_game *)param;
-    if (key == SDL_SCANCODE_ESCAPE)
+
+	if (key == SDL_SCANCODE_ESCAPE)
 		mlx_loop_end(game->mlx.mlx);
 	else if (key == SDL_SCANCODE_W)
-        move_forward(&game->player);
-    else if (key == SDL_SCANCODE_S)
-        move_backward(&game->player);
-    else if (key == SDL_SCANCODE_A)
-        move_left(&game->player);
-    else if (key == SDL_SCANCODE_D)
-        move_right(&game->player);
-    else if (key == SDL_SCANCODE_LEFT)
-        rotate_left(&game->player);
-    else if (key == SDL_SCANCODE_RIGHT)
-        rotate_right(&game->player);
-    printf("vecX = %f | vecY = %f\ncoX = %f | coY = %f\nplaneX = %f | planeY = %f\n\n", game->player.dir.x, game->player.dir.y, game->player.pos.x, game->player.pos.y, game->player.plane.x, game->player.plane.y);
+		move_forward(&game->player);
+	else if (key == SDL_SCANCODE_S)
+		move_backward(&game->player);
+	else if (key == SDL_SCANCODE_A)
+		move_left(&game->player);
+	else if (key == SDL_SCANCODE_D)
+		move_right(&game->player);
+	else if (key == SDL_SCANCODE_LEFT)
+		rotate_left(&game->player);
+	else if (key == SDL_SCANCODE_RIGHT)
+		rotate_right(&game->player);
+	mlx_clear_window(game->mlx.mlx, game->mlx.win, (mlx_color){ .rgba = 0xFF000000 });
+	draw_player(game);
+//    printf("vecX = %f | vecY = %f\ncoX = %f | coY = %f\nplaneX = %f | planeY = %f\n\n", game->player.dir.x, game->player.dir.y, game->player.pos.x, game->player.pos.y, game->player.plane.x, game->player.plane.y);
+	printf("player.pos.x = %f | player.pos.y = %f\n", game->player.pos.x, game->player.pos.y);
 }

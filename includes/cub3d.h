@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:47:13 by albernar          #+#    #+#             */
-/*   Updated: 2025/02/25 21:05:17 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/02/26 10:54:57 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "error.h"
 # include "colors.h"
 # include "hooks.h"
-# include "render.h"
 # include <unistd.h>
 # include <fcntl.h>
 # include <errno.h>
@@ -58,6 +57,13 @@ typedef struct s_map
 	char	**grid; // manage all gnl(); lines : no strdup, no malloc
 	int		grid_size;
 }	t_map;
+
+typedef struct	s_mlx
+{
+	mlx_context				mlx;
+	mlx_window_create_info	info;
+	mlx_window				win;
+}	t_mlx;
 
 typedef struct s_game
 {
