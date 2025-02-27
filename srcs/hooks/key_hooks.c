@@ -6,7 +6,7 @@
 /*   By: stetrel <stetrel@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 20:49:43 by stetrel           #+#    #+#             */
-/*   Updated: 2025/02/26 14:48:48 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/02/27 18:13:00 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <SDL2/SDL_scancode.h>
 #include <math.h>
 
-#define MOVE_SPEED 1.1
+#define MOVE_SPEED 0.1
 #define ROT_SPEED 0.1
 
 void    move_forward(t_player *player)
@@ -92,7 +92,7 @@ void key_hook(int key, void* param)
 	else if (key == SDL_SCANCODE_RIGHT)
 		rotate_right(&game->player);
 	mlx_clear_window(game->mlx.mlx, game->mlx.win, (mlx_color){ .rgba = 0xFF000000 });
-	draw_player(game);
+	cub_raycasting(game);
 //    printf("vecX = %f | vecY = %f\ncoX = %f | coY = %f\nplaneX = %f | planeY = %f\n\n", game->player.dir.x, game->player.dir.y, game->player.pos.x, game->player.pos.y, game->player.plane.x, game->player.plane.y);
 	printf("player.pos.x = %f | player.pos.y = %f\n", game->player.pos.x, game->player.pos.y);
 }

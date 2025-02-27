@@ -6,7 +6,7 @@
 #    By: albernar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 17:32:26 by albernar          #+#    #+#              #
-#    Updated: 2025/02/26 14:49:49 by stetrel          ###   ########.fr        #
+#    Updated: 2025/02/27 17:21:48 by stetrel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,6 @@ SRCS 	:= 	main.c \
 			parsing/map/parse_map.c \
 			render/cub_mlxinit.c \
 			render/raycasting.c \
-			render/draw_player.c\
 			hooks/key_hooks.c \
 
 SRCS	:=	$(addprefix $(SRC_DIR)/, $(SRCS))
