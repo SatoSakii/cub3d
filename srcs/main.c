@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:01:53 by albernar          #+#    #+#             */
-/*   Updated: 2025/02/27 18:09:33 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/03/02 20:05:36 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,13 @@ int	parse_file(int argc, char **argv, t_error_ctx *ctx, t_game *game)
 	return (err);
 }
 
-
-
 int	main(int argc, char **argv)
 {
 	t_error_ctx	ctx;
 	t_game		game;
 
 	game = (t_game){0};
+	game.keys = (t_keys){0};
 	ctx = (t_error_ctx){0};
 	ft_memset(&game.ceiling, -1, sizeof(game.ceiling));
 	ft_memset(&game.floor, -1, sizeof(game.floor));
@@ -56,8 +55,9 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	init_mlx(&game.mlx);
-	mlx_on_event(game.mlx.mlx, game.mlx.win, MLX_KEYDOWN, key_hook, &game);
-	cub_raycasting(&game);
+	mlx_on_event(game.mlx.mlx, game.mlx.win, MLX_KEYDOWN, key_hook_down, &game);
+	mlx_on_event(game.mlx.mlx, game.mlx.win, MLX_KEYUP, key_hook_release, &game);
+	mlx_add_loop_hook(game.mlx.mlx, render, &game);
 	mlx_loop(game.mlx.mlx);
 	mlx_destroy_window(game.mlx.mlx, game.mlx.win);
 	mlx_destroy_context(game.mlx.mlx);

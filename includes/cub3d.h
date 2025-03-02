@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:47:13 by albernar          #+#    #+#             */
-/*   Updated: 2025/02/27 17:42:36 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/03/02 20:01:57 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,16 @@ typedef struct	s_mlx
 	mlx_window				win;
 }	t_mlx;
 
+typedef struct s_keys
+{
+	int		w;
+	int		s;
+	int		a;
+	int		d;
+	int		left;
+	int		right;
+}	t_keys;
+
 typedef struct s_game
 {
 	t_textures	no;
@@ -76,6 +86,7 @@ typedef struct s_game
 	t_player	player;
 	t_map		map;
 	t_mlx		mlx;
+	t_keys		keys;
 }	t_game;
 
 typedef enum s_bool
