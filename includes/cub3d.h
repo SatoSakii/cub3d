@@ -25,11 +25,11 @@
 
 typedef struct s_textures
 {
-	int		width;
-	int		height;
-	char	*path;
-	void	*addr; // addr of line from gnl(); to free
-	void	*img; // img of mlx(); useless for parsing
+	int			width;
+	int			height;
+	char		*path;
+	void		*addr; // addr of line from gnl(); to free
+	mlx_color	*img; // img of mlx(); useless for parsing
 }	t_textures;
 
 typedef struct s_colors

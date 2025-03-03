@@ -83,7 +83,7 @@ void	rotate_right(t_player *player, double delta_time)
 
 double	get_delta_time(void)
 {
-	static struct timeval	last_ts;
+	static struct timeval	last_ts = {0};
     struct timeval			cur_ts;
 	double					delta_time;
 

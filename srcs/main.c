@@ -12,6 +12,7 @@
 
 #include "cub3d.h"
 #include "mlx.h"
+#include "mlx_extended.h"
 #include "render.h"
 
 int	parse_file(int argc, char **argv, t_error_ctx *ctx, t_game *game)
@@ -39,6 +40,19 @@ int	parse_file(int argc, char **argv, t_error_ctx *ctx, t_game *game)
 	return (err);
 }
 
+void	put_textures(t_game *game)
+{
+	int			img_width;
+	int			img_height;
+	mlx_image	img = mlx_new_image_from_file(game->mlx.mlx, "textures/wood.png", &img_width, &img_height);
+    mlx_color   *pixel_dest = malloc(sizeof(mlx_color) * img_width * img_height);
+
+    mlx_get_image_region(game->mlx.mlx, img, 0, 0, img_width, img_height, pixel_dest);
+    game->no.width = img_width;
+    game->no.height = img_height;
+	game->no.img = pixel_dest; 
+}
+
 int	main(int argc, char **argv)
 {
 	t_error_ctx	ctx;
@@ -55,6 +69,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	init_mlx(&game.mlx);
+	put_textures(&game);
 	mlx_on_event(game.mlx.mlx, game.mlx.win, MLX_KEYDOWN, key_hook_down, &game);
 	mlx_on_event(game.mlx.mlx, game.mlx.win, MLX_KEYUP, key_hook_release, &game);
 	mlx_add_loop_hook(game.mlx.mlx, render, &game);

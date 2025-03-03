@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:27:52 by stetrel           #+#    #+#             */
-/*   Updated: 2025/03/02 20:09:27 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:27:02 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 #include <math.h>
 #include <sys/time.h>
 #include <stdio.h>
+#include <time.h>
 # define MAX_RAY_DISTANCE 100.0
 
-void draw_vertical_line(mlx_color *pixels, int x, int start, int end)
+void draw_vertical_line(t_game *game, mlx_color *pixels, int x, float texX, int start, int end)
 {
     int line_length;
 
@@ -32,8 +33,22 @@ void draw_vertical_line(mlx_color *pixels, int x, int start, int end)
     line_length = end - start + 1;
     if (line_length <= 0)
         return;
+    int texX_pixel = (int)(texX * game->no.width);
+    if (texX_pixel >= game->no.width)
+        texX_pixel = game->no.width - 1;
+    double step = (double)game->no.height / line_length;
+    double texPos = 0;
     for (int i = 0; i < line_length; i++)
-        pixels[(start + i) * WINDOW_WIDTH + x].rgba = 0xFF9032FF;
+    {
+        int calc = (start + i) * WINDOW_WIDTH + x;
+        int texY = (int)texPos;
+        if (texY >= game->no.height)
+            texY = game->no.height - 1;
+        int index = texY * game->no.width + texX_pixel;
+        texPos += step;
+        if (index >= 0 && index < game->no.width * game->no.height)
+            pixels[calc].rgba = game->no.img[index].rgba;
+    }
 }
 
 void	print_fps(void)
@@ -84,22 +99,22 @@ void cub_raycasting(t_game *game)
         delta_dist_x = fabs(1 / raydir_x);
         delta_dist_y = fabs(1 / raydir_y);
         if (raydir_x < 0)
-		{
-			step_x = -1;
+        {
+            step_x = -1;
             side_dist_x = (game->player.pos.x - map_x) * delta_dist_x;
         }
-		else
-		{
+        else
+        {
             step_x = 1;
             side_dist_x = (map_x + 1.0 - game->player.pos.x) * delta_dist_x;
         }
         if (raydir_y < 0)
-		{
+        {
             step_y = -1;
             side_dist_y = (game->player.pos.y - map_y) * delta_dist_y;
         }
-		else
-		{
+        else
+        {
             step_y = 1;
             side_dist_y = (map_y + 1.0 - game->player.pos.y) * delta_dist_y;
         }
@@ -107,36 +122,44 @@ void cub_raycasting(t_game *game)
         while (!hit)
         {
             if (side_dist_x < side_dist_y)
-			{
+            {
                 side_dist_x += delta_dist_x;
                 map_x += step_x;
                 side = 0;
             }
-			else
-			{
+            else
+            {
                 side_dist_y += delta_dist_y;
                 map_y += step_y;
                 side = 1;
             }
-			if (map_x < 0 || map_x >= game->map.grid_size || map_y < 0 || map_y >= game->map.grid_size)
+            if (map_x < 0 || map_x >= game->map.grid_size || map_y < 0 || map_y >= game->map.grid_size)
             {
                 if ((side == 0 ? side_dist_x : side_dist_y) > MAX_RAY_DISTANCE)
-                    break ;
+                    break;
             }
-			else if (game->map.grid[map_y][map_x] == '1')
+            else if (game->map.grid[map_y][map_x] == '1')
                 hit = true;
         }
-		if (!hit)
-			continue;
-        perp_wall_dist = (side == 0)
-            ? (map_x - game->player.pos.x + (1 - step_x) / 2) / raydir_x
-            : (map_y - game->player.pos.y + (1 - step_y) / 2) / raydir_y;
+        if (!hit)
+            continue;
+        if (side == 0)
+            perp_wall_dist = (side_dist_x - delta_dist_x);
+        else
+            perp_wall_dist = (side_dist_y - delta_dist_y);
         line_height = (int)(WINDOW_HEIGHT / perp_wall_dist);
         draw_start = -line_height / 2 + WINDOW_HEIGHT / 2;
         if (draw_start < 0) draw_start = 0;
-        draw_end = line_height / 2 + WINDOW_HEIGHT / 2;
-        if (draw_end >= WINDOW_HEIGHT) draw_end = WINDOW_HEIGHT - 1;
-        draw_vertical_line(pixels, x, draw_start, draw_end);
+            draw_end = line_height / 2 + WINDOW_HEIGHT / 2;
+        if (draw_end >= WINDOW_HEIGHT)
+            draw_end = WINDOW_HEIGHT - 1;
+        double wallX;
+        if (side == 0)
+            wallX = game->player.pos.y + perp_wall_dist * raydir_y;
+        else
+            wallX = game->player.pos.x + perp_wall_dist * raydir_x;
+        wallX -= floor(wallX);
+        draw_vertical_line(game, pixels, x, wallX, draw_start, draw_end);
     }
     mlx_pixel_put_array(game->mlx.mlx, game->mlx.win, 0, 0, pixels, WINDOW_WIDTH * WINDOW_HEIGHT);
     print_fps();
