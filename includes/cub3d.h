@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:01:25 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/08 04:05:41 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/10 13:00:55 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,8 +171,8 @@ t_textures		get_texture_by_side(t_game *game, int side);
 void			calculate_texture_coordinates(double wall_x,
 					t_textures *texture, int side, t_ivec2d *tex);
 void			check_hit(t_ray *ray, t_game *game, int *side);
-unsigned int	check_darker(t_game *game,
-					bool inside_wall, unsigned int color);
+void			change_background(bool inside_wall, t_game *game);
+unsigned int	darker_color(bool inside_wall, unsigned int color);
 
 // Utils
 void			free_game(t_game *game);

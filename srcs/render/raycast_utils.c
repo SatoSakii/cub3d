@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 01:36:32 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/08 04:09:32 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/10 13:02:37 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	check_hit(t_ray *ray, t_game *game, int *side)
 	int		is_x_side;
 
 	ray->inside_wall = is_insidewall(game);
+	change_background(ray->inside_wall, game);
 	while (!ray->hit)
 	{
 		if (ray->sidedist.x < ray->sidedist.y)

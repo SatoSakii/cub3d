@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 02:32:30 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/08 03:45:42 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/10 13:08:16 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,10 @@ void	fill_background(mlx_color *scene, t_game *game)
 	}
 }
 
-unsigned int	check_darker(t_game *game,
-	bool inside_wall, unsigned int color)
+void	change_background(bool inside_wall, t_game *game)
 {
 	if (inside_wall)
 	{
-		color = (color >> 1) & 0x7F7F7F7F;
 		game->ceiling.color = (game->ceiling.color_bak >> 1) & 0x7F7F7F7F;
 		game->floor.color = (game->floor.color_bak >> 1) & 0x7F7F7F7F;
 	}
@@ -47,6 +45,12 @@ unsigned int	check_darker(t_game *game,
 		game->ceiling.color = game->ceiling.color_bak;
 		game->floor.color = game->floor.color_bak;
 	}
+}
+
+unsigned int	darker_color(bool inside_wall, unsigned int color)
+{
+	if (inside_wall)
+		color = (color >> 1) & 0x7F7F7F7F;
 	return (color);
 }
 

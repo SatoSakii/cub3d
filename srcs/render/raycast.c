@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 01:49:49 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/08 03:57:25 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/10 13:06:14 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,7 @@ static void	draw_vertical_line(t_game *game, mlx_color *scene,
 		tex_pos += step;
 		if (tex.x >= 0 && tex.x < texture.width
 			&& tex.y >= 0 && tex.y < texture.height)
-			scene[y * WINDOW_WIDTH + rdr.x].rgba = check_darker(game,
-					rdr.inside_wall,
+			scene[y * WINDOW_WIDTH + rdr.x].rgba = darker_color(rdr.inside_wall,
 					texture.pixels[tex.y * texture.width + tex.x].rgba);
 	}
 }
