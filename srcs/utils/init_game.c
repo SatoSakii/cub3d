@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 02:36:36 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/08 03:27:49 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/10 18:42:22 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,5 @@ int	init_mlx(t_game *game, t_mlx *mlx)
 	game->scene = malloc(sizeof(mlx_color) * WINDOW_WIDTH * WINDOW_HEIGHT);
 	if (!game->scene)
 		return (PROCESS_ERR);
-	game->floor.color_bak = game->floor.color;
-	game->ceiling.color_bak = game->ceiling.color;
 	return (init_textures(game, mlx));
 }

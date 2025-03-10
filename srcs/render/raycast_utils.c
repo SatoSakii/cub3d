@@ -6,13 +6,13 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 01:36:32 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/10 13:02:37 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/10 20:12:39 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	set_wall_side(int *side, t_ray *ray, int _side)
+static void	set_wall_side(int *side, t_ray *ray, int _side)
 {
 	if (_side)
 	{
@@ -42,7 +42,7 @@ bool	is_insidewall(t_game *game)
 		&& game->map.grid[pos.y][pos.x] == '1');
 }
 
-void	invert_side(int *side)
+static void	invert_side(int *side)
 {
 	if (*side == NORTH)
 		*side = SOUTH;
@@ -54,7 +54,7 @@ void	invert_side(int *side)
 		*side = EAST;
 }
 
-int	check_state(t_ray *ray, bool inside_wall, t_game *game, int *side)
+static int	check_state(t_ray *ray, bool inside_wall, t_game *game, int *side)
 {
 	if (!inside_wall && (ray->sidedist.y - ray->deltadist.y) > MAX_RAY_DIST)
 		return (2);
@@ -85,7 +85,6 @@ void	check_hit(t_ray *ray, t_game *game, int *side)
 	int		is_x_side;
 
 	ray->inside_wall = is_insidewall(game);
-	change_background(ray->inside_wall, game);
 	while (!ray->hit)
 	{
 		if (ray->sidedist.x < ray->sidedist.y)

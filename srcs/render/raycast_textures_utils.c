@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 02:32:30 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/10 13:08:16 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/10 20:26:57 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,48 +14,35 @@
 
 void	fill_background(mlx_color *scene, t_game *game)
 {
-	int	pos;
-	int	half_pixels;
-	int	total_pixels;
+	int				half_pixels;
+	int				total_pixels;
+	bool			inside_wall;
+	unsigned int	tmp;
+	unsigned int	tmp2;
 
 	total_pixels = WINDOW_WIDTH * WINDOW_HEIGHT;
 	half_pixels = WINDOW_WIDTH * (WINDOW_HEIGHT / 2);
-	pos = 0;
-	while (pos < half_pixels)
-	{
-		scene[pos].rgba = game->ceiling.color;
-		pos++;
-	}
-	while (pos < total_pixels)
-	{
-		scene[pos].rgba = game->floor.color;
-		pos++;
-	}
-}
-
-void	change_background(bool inside_wall, t_game *game)
-{
+	inside_wall = is_insidewall(game);
+	tmp = game->ceiling.color;
+	tmp2 = game->floor.color;
 	if (inside_wall)
 	{
-		game->ceiling.color = (game->ceiling.color_bak >> 1) & 0x7F7F7F7F;
-		game->floor.color = (game->floor.color_bak >> 1) & 0x7F7F7F7F;
+		tmp = (tmp >> 1) & 0x7F7F7F7F;
+		tmp2 = (tmp2 >> 1) & 0x7F7F7F7F;
 	}
-	else
-	{
-		game->ceiling.color = game->ceiling.color_bak;
-		game->floor.color = game->floor.color_bak;
-	}
+	mlxcolor_memset(scene, tmp,
+		half_pixels * sizeof(mlx_color));
+	mlxcolor_memset(scene + half_pixels, tmp2,
+		(total_pixels - half_pixels) * sizeof(mlx_color));
 }
 
-unsigned int	darker_color(bool inside_wall, unsigned int color)
+t_textures	init_draw(int draws[2], int side, t_game *game)
 {
-	if (inside_wall)
-		color = (color >> 1) & 0x7F7F7F7F;
-	return (color);
-}
-
-t_textures	get_texture_by_side(t_game *game, int side)
-{
+	if (draws[0] < 0)
+		draws[0] = 0;
+	if (draws[1] >= WINDOW_HEIGHT)
+		draws[1] = WINDOW_HEIGHT - 1;
+	draws[0] -= 1;
 	if (side == NORTH)
 		return (game->no);
 	else if (side == SOUTH)

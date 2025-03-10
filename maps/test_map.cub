@@ -1,4 +1,4 @@
-C 255, 255, 255
+C 255, 0, 0
 WE textures/chiseled_quartz_block.png
 EA textures/craftingtable.png
 SO textures/cobblestone.png

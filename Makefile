@@ -6,7 +6,7 @@
 #    By: albernar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 17:32:26 by albernar          #+#    #+#              #
-#    Updated: 2025/03/08 04:01:31 by albernar         ###   ########.fr        #
+#    Updated: 2025/03/10 20:28:17 by albernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRCS 	:= 	main.c \
 			render/raycast.c \
 			utils/free_game.c \
 			utils/init_game.c \
+			utils/mlxcolor_memset.c \
 			utils/times.c \
 
 SRCS	:=	$(addprefix $(SRC_DIR)/, $(SRCS))
@@ -80,12 +81,14 @@ $(OBJ_DIR)/%.o: %.c
 	
 clean:
 	@make clean -C $(LIBFT_PATH) -s
+	@make clean -C $(LIBMLX_PATH) -s
 	@echo " $(RED)$(BOLD)$(ITALIC)■$(RESET)  cleaned	$(RED)$(BOLD)$(ITALIC)$(MLX_DIR)$(RESET)"
 	@rm -rf $(OBJ_DIR)
 	
 fclean: clean
 	@echo "$(RED)Cleaning MLX42 files...$(RESET)"
 	@make fclean -C $(LIBMLX_PATH) -s
+	@make fclean -C $(LIBFT_PATH) -s
 	@echo "$(RED)Cleaning executables...$(RESET)"
 	@rm -f $(NAME)
 	

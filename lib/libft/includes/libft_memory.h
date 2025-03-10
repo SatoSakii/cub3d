@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 20:52:51 by albernar          #+#    #+#             */
-/*   Updated: 2025/02/23 18:17:14 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/10 17:53:42 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ void	ft_free2d(void **ptr);
 void	ft_bzero(void *s, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
-void	*ft_memset(void *ptr, uint32_t value, uint32_t size);
+void	*ft_memset(void *dest, int c, size_t n);
 
 #endif

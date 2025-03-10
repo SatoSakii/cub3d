@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:01:25 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/10 13:00:55 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/10 20:21:22 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,6 @@ typedef struct s_colors
 	int				g;
 	int				b;
 	unsigned int	color;
-	unsigned int	color_bak;
 }	t_colors;
 
 typedef struct s_keys
@@ -166,13 +165,10 @@ void			raycast(t_game *game);
 
 // Raycast Utils
 void			fill_background(mlx_color *scene, t_game *game);
-void			set_wall_side(int *side, t_ray *ray, int _side);
-t_textures		get_texture_by_side(t_game *game, int side);
 void			calculate_texture_coordinates(double wall_x,
 					t_textures *texture, int side, t_ivec2d *tex);
 void			check_hit(t_ray *ray, t_game *game, int *side);
-void			change_background(bool inside_wall, t_game *game);
-unsigned int	darker_color(bool inside_wall, unsigned int color);
+bool			is_insidewall(t_game *game);
 
 // Utils
 void			free_game(t_game *game);
@@ -181,5 +177,7 @@ int				init_mlx(t_game *game, t_mlx *mlx);
 int				init_textures(t_game *game, t_mlx *mlx);
 double			get_delta_time(void);
 void			print_fps(void);
+t_textures		init_draw(int draws[2], int side, t_game *game);
+void			*mlxcolor_memset(void *dest, uint32_t c, size_t n);
 
 #endif
