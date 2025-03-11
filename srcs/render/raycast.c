@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 01:49:49 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/10 20:26:49 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:15:53 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	draw_vertical_line(t_game *game, mlx_color *scene,
 	texture = init_draw(draws, rdr.side, game);
 	calculate_texture_coordinates(rdr.wall_x, &texture, rdr.side, &tex);
 	step = (double)texture.height / (double)(rdr.line_height);
-	tex_pos = (draws[0] - WINDOW_HEIGHT / 2 + rdr.line_height / 2) * step;
+	tex_pos = ((draws[0] + 1) - WINDOW_HEIGHT / 2 + rdr.line_height / 2) * step;
 	while (++draws[0] <= draws[1])
 	{
 		tex.y = (int)tex_pos;
