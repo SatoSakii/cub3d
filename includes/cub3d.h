@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:01:25 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/11 14:50:22 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/11 16:39:39 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ typedef struct s_game
 	t_map		map;
 	t_keys		keys;
 	t_mlx		mlx;
+	bool		collision;
 	double		camera_pitch;
 	mlx_color	*scene;
 }	t_game;
@@ -156,8 +157,8 @@ void			event_keyup(int keycode, void *param);
 // Events Moves
 void			rotate_player(t_game *game, t_player *player,
 					double delta_time);
-void			move_player(t_player *player, int direction,
-					double delta_time);
+void			move_player(t_game *game,
+					t_player *player, int direction, double delta_time);
 
 // Render
 void			raycast(t_game *game);

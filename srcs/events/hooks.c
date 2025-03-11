@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 02:10:53 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/11 14:50:32 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/11 16:44:36 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	event_keydown(int keycode, void *param)
 		game->keys.a = true;
 	else if (keycode == SDL_SCANCODE_D)
 		game->keys.d = true;
+	else if (keycode == SDL_SCANCODE_N)
+		game->collision = !game->collision;
 }
 
 void	event_keyup(int keycode, void *param)
@@ -52,13 +54,13 @@ void	event_loop(void *param)
 	delta_time = get_delta_time();
 	game = (t_game *)param;
 	if (game->keys.w)
-		move_player(&game->player, MOVE_FORWARD, delta_time);
+		move_player(game, &game->player, MOVE_FORWARD, delta_time);
 	if (game->keys.s)
-		move_player(&game->player, MOVE_BACKWARD, delta_time);
+		move_player(game, &game->player, MOVE_BACKWARD, delta_time);
 	if (game->keys.a)
-		move_player(&game->player, MOVE_LEFT, delta_time);
+		move_player(game, &game->player, MOVE_LEFT, delta_time);
 	if (game->keys.d)
-		move_player(&game->player, MOVE_RIGHT, delta_time);
+		move_player(game, &game->player, MOVE_RIGHT, delta_time);
 	rotate_player(game, &game->player, delta_time);
 	mlx_clear_window(game->mlx.ctx, game->mlx.win,
 		(mlx_color){.rgba = 0x000000FF});

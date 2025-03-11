@@ -6,34 +6,58 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 03:22:23 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/11 15:00:21 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/11 16:55:56 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	move_player(t_player *player, int direction, double delta_time)
+static void	update_pos(t_game *game, t_player *player, double x, double y)
 {
+	int	map_x;
+	int	map_y;
+
+	map_x = (int)floor(x);
+	map_y = (int)floor(y);
+	if (game->collision && (map_x < 0 || map_x >= (int)game->map.width
+			|| map_y < 0 || map_y >= (int)game->map.height))
+	{
+		player->pos.x = x;
+		player->pos.y = y;
+		return ;
+	}
+	if (game->collision && game->map.grid[map_y][map_x] == '1')
+		return ;
+	player->pos.x = x;
+	player->pos.y = y;
+}
+
+void	move_player(t_game *game,
+	t_player *player, int direction, double delta_time)
+{
+	t_dvec2d	new_pos;
+
 	if (direction == MOVE_FORWARD)
 	{
-		player->pos.x += player->dir.x * MOVE_SPEED * delta_time;
-		player->pos.y += player->dir.y * MOVE_SPEED * delta_time;
+		new_pos.x = player->pos.x + player->dir.x * MOVE_SPEED * delta_time;
+		new_pos.y = player->pos.y + player->dir.y * MOVE_SPEED * delta_time;
 	}
 	else if (direction == MOVE_BACKWARD)
 	{
-		player->pos.x -= player->dir.x * MOVE_SPEED * delta_time;
-		player->pos.y -= player->dir.y * MOVE_SPEED * delta_time;
+		new_pos.x = player->pos.x - player->dir.x * MOVE_SPEED * delta_time;
+		new_pos.y = player->pos.y - player->dir.y * MOVE_SPEED * delta_time;
 	}
 	else if (direction == MOVE_LEFT)
 	{
-		player->pos.x -= player->dir.y * MOVE_SPEED * delta_time;
-		player->pos.y += player->dir.x * MOVE_SPEED * delta_time;
+		new_pos.x = player->pos.x - player->dir.y * MOVE_SPEED * delta_time;
+		new_pos.y = player->pos.y + player->dir.x * MOVE_SPEED * delta_time;
 	}
 	else if (direction == MOVE_RIGHT)
 	{
-		player->pos.x += player->dir.y * MOVE_SPEED * delta_time;
-		player->pos.y -= player->dir.x * MOVE_SPEED * delta_time;
+		new_pos.x = player->pos.x + player->dir.y * MOVE_SPEED * delta_time;
+		new_pos.y = player->pos.y - player->dir.x * MOVE_SPEED * delta_time;
 	}
+	update_pos(game, player, new_pos.x, new_pos.y);
 }
 
 #define MAX_PITCH 1080.0

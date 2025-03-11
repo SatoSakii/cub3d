@@ -1,9 +1,9 @@
-C 255, 0, 0
-WE textures/chiseled_quartz_block.png
-EA textures/craftingtable.png
-SO textures/cobblestone.png
-NO textures/caca.png
-F	0,0,255
+F 100, 87, 89
+WE textures/wall.png
+EA textures/wall.png
+SO textures/wall.png
+NO textures/wall.png
+C	33,33,33
 
 1111111111111111111111111111111111111111111111
 1000000000000000000000000000000000000000000001
