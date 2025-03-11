@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:01:25 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/11 16:39:39 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/11 21:40:06 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@
 # include <math.h>
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 720
+# define MAX_PITCH 1080.0
 # define MOVE_SPEED 4
 # define ROTATE_SPEED 1
 # define MAX_RAY_DIST 100.0
+# define DELETE_WALL_DIST 1.5
 
 typedef enum e_direction
 {
@@ -134,19 +136,19 @@ typedef struct s_keys
 
 typedef struct s_game
 {
-	t_textures	no;
-	t_textures	so;
-	t_textures	ea;
-	t_textures	we;
-	t_colors	ceiling;
-	t_colors	floor;
-	t_player	player;
-	t_map		map;
-	t_keys		keys;
-	t_mlx		mlx;
-	bool		collision;
-	double		camera_pitch;
-	mlx_color	*scene;
+	t_textures		no;
+	t_textures		so;
+	t_textures		ea;
+	t_textures		we;
+	t_colors		ceiling;
+	t_colors		floor;
+	t_player		player;
+	t_map			map;
+	t_keys			keys;
+	t_mlx			mlx;
+	bool			collision;
+	double			camera_pitch;
+	mlx_color		*scene;
 }	t_game;
 
 // Events Hooks
@@ -162,6 +164,7 @@ void			move_player(t_game *game,
 
 // Render
 void			raycast(t_game *game);
+void			perform_dda(t_ray *ray, t_game *game);
 
 // Raycast Utils
 void			fill_background(mlx_color *scene, t_game *game);

@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 03:22:23 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/11 17:20:29 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:53:35 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ void	move_player(t_game *game,
 	}
 	update_pos(game, player, new_pos.x, new_pos.y);
 }
-
-#define MAX_PITCH 1080.0
 
 void	rotate_player(t_game *game, t_player *player, double delta_time)
 {

@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 01:49:49 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/11 15:59:37 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/11 21:28:24 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	init_rays(t_ray *ray, t_game *game, int x, double inv_width)
 		ray->deltadist.y = fabs(1.0 / ray->raydir.y);
 }
 
-static void	perform_dda(t_ray *ray, t_game *game)
+void	perform_dda(t_ray *ray, t_game *game)
 {
 	if (ray->raydir.x < 0)
 	{
