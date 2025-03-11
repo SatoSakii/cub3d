@@ -6,30 +6,48 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 03:22:23 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/11 16:55:56 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:20:29 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void	update_pos_collision(t_game *game,
+	t_player *player, double x, double y)
+{
+	t_ivec2d	check;
+
+	check = (t_ivec2d){(int)floor(x), (int)floor(player->pos.y)};
+	if (check.x >= 0 && check.x < (int)game->map.width && check.y >= 0
+		&& check.y < (int)game->map.height
+		&& game->map.grid[check.y][check.x] != '1')
+		player->pos.x = x;
+	check = (t_ivec2d){(int)floor(player->pos.x), (int)floor(y)};
+	if (check.x >= 0 && check.x < (int)game->map.width && check.y >= 0
+		&& check.y < (int)game->map.height
+		&& game->map.grid[check.y][check.x] != '1')
+		player->pos.y = y;
+}
+
 static void	update_pos(t_game *game, t_player *player, double x, double y)
 {
-	int	map_x;
-	int	map_y;
+	t_ivec2d	map;
 
-	map_x = (int)floor(x);
-	map_y = (int)floor(y);
-	if (game->collision && (map_x < 0 || map_x >= (int)game->map.width
-			|| map_y < 0 || map_y >= (int)game->map.height))
+	map = (t_ivec2d){(int)floor(x), (int)floor(y)};
+	if (game->collision && (map.x < 0 || map.x >= (int)game->map.width
+			|| map.y < 0 || map.y >= (int)game->map.height))
 	{
 		player->pos.x = x;
 		player->pos.y = y;
 		return ;
 	}
-	if (game->collision && game->map.grid[map_y][map_x] == '1')
-		return ;
-	player->pos.x = x;
-	player->pos.y = y;
+	if (game->collision)
+		update_pos_collision(game, player, x, y);
+	else
+	{
+		player->pos.x = x;
+		player->pos.y = y;
+	}
 }
 
 void	move_player(t_game *game,
