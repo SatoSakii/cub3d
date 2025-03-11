@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 01:49:49 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/10 20:26:49 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:52:13 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,26 @@ static void	draw_vertical_line(t_game *game, mlx_color *scene,
 	t_ivec2d	tex;
 	double		step;
 	double		tex_pos;
-	t_textures	texture;
+	t_textures	tx;
 
-	texture = init_draw(draws, rdr.side, game);
-	calculate_texture_coordinates(rdr.wall_x, &texture, rdr.side, &tex);
-	step = (double)texture.height / (double)(rdr.line_height);
-	tex_pos = (draws[0] - WINDOW_HEIGHT / 2 + rdr.line_height / 2) * step;
+	tx = init_draw(draws, rdr.side, game);
+	calculate_texture_coordinates(rdr.wall_x, &tx, rdr.side, &tex);
+	step = (double)tx.height / (double)(rdr.line_height);
+	tex_pos = ((draws[0] + 1) - game->camera_pitch - WINDOW_HEIGHT / 2
+			+ rdr.line_height / 2) * step;
 	while (++draws[0] <= draws[1])
 	{
 		tex.y = (int)tex_pos;
 		tex_pos += step;
-		if (tex.x >= 0 && tex.x < texture.width
-			&& tex.y >= 0 && tex.y < texture.height)
+		if (tex.x >= 0 && tex.x < tx.width && tex.y >= 0 && tex.y < tx.height)
 		{
 			if (rdr.inside_wall)
 				scene[draws[0] * WINDOW_WIDTH + rdr.x].rgba
-					= (texture.pixels[tex.y * texture.width + tex.x].rgba >> 1)
+					= (tx.pixels[tex.y * tx.width + tex.x].rgba >> 1)
 					& 0x7F7F7F7F;
 			else
 				scene[draws[0] * WINDOW_WIDTH + rdr.x].rgba
-					= texture.pixels[tex.y * texture.width + tex.x].rgba;
+					= tx.pixels[tex.y * tx.width + tex.x].rgba;
 		}
 	}
 }
@@ -98,10 +98,10 @@ static void	finish_raycast(t_ray *ray, t_game *game,
 	else
 		ray->perpwalldist = (ray->sidedist.y - ray->deltadist.y);
 	line_height = (int)(WINDOW_HEIGHT / ray->perpwalldist);
-	draw_start = -line_height / 2 + WINDOW_HEIGHT / 2;
+	draw_start = (-line_height / 2 + WINDOW_HEIGHT / 2) + game->camera_pitch;
 	if (draw_start < 0)
 		draw_start = 0;
-	draw_end = line_height / 2 + WINDOW_HEIGHT / 2;
+	draw_end = (line_height / 2 + WINDOW_HEIGHT / 2) + game->camera_pitch;
 	if (draw_end >= WINDOW_HEIGHT)
 		draw_end = WINDOW_HEIGHT - 1;
 	if (side_x[0] == EAST || side_x[0] == WEST)

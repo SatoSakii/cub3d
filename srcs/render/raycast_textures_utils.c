@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 02:32:30 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/10 20:26:57 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:43:54 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,28 @@
 
 void	fill_background(mlx_color *scene, t_game *game)
 {
-	int				half_pixels;
-	int				total_pixels;
+	int				horizon;
 	bool			inside_wall;
-	unsigned int	tmp;
-	unsigned int	tmp2;
+	unsigned int	ceiling_color;
+	unsigned int	floor_color;
 
-	total_pixels = WINDOW_WIDTH * WINDOW_HEIGHT;
-	half_pixels = WINDOW_WIDTH * (WINDOW_HEIGHT / 2);
 	inside_wall = is_insidewall(game);
-	tmp = game->ceiling.color;
-	tmp2 = game->floor.color;
+	ceiling_color = game->ceiling.color;
+	floor_color = game->floor.color;
 	if (inside_wall)
 	{
-		tmp = (tmp >> 1) & 0x7F7F7F7F;
-		tmp2 = (tmp2 >> 1) & 0x7F7F7F7F;
+		ceiling_color = (ceiling_color >> 1) & 0x7F7F7F7F;
+		floor_color = (floor_color >> 1) & 0x7F7F7F7F;
 	}
-	mlxcolor_memset(scene, tmp,
-		half_pixels * sizeof(mlx_color));
-	mlxcolor_memset(scene + half_pixels, tmp2,
-		(total_pixels - half_pixels) * sizeof(mlx_color));
+	horizon = (WINDOW_HEIGHT / 2) + (int)game->camera_pitch;
+	if (horizon < 0)
+		horizon = 0;
+	if (horizon > WINDOW_HEIGHT)
+		horizon = WINDOW_HEIGHT;
+	mlxcolor_memset(scene, ceiling_color,
+		horizon * WINDOW_WIDTH * sizeof(mlx_color));
+	mlxcolor_memset(scene + (horizon * WINDOW_WIDTH), floor_color,
+		(WINDOW_HEIGHT - horizon) * WINDOW_WIDTH * sizeof(mlx_color));
 }
 
 t_textures	init_draw(int draws[2], int side, t_game *game)

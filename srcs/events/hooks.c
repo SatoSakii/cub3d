@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 02:10:53 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/10 19:46:58 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:50:32 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@ void	event_keydown(int keycode, void *param)
 		game->keys.a = true;
 	else if (keycode == SDL_SCANCODE_D)
 		game->keys.d = true;
-	else if (keycode == SDL_SCANCODE_LEFT)
-		game->keys.left = true;
-	else if (keycode == SDL_SCANCODE_RIGHT)
-		game->keys.right = true;
 }
 
 void	event_keyup(int keycode, void *param)
@@ -46,10 +42,6 @@ void	event_keyup(int keycode, void *param)
 		game->keys.a = false;
 	else if (keycode == SDL_SCANCODE_D)
 		game->keys.d = false;
-	else if (keycode == SDL_SCANCODE_LEFT)
-		game->keys.left = false;
-	else if (keycode == SDL_SCANCODE_RIGHT)
-		game->keys.right = false;
 }
 
 void	event_loop(void *param)
@@ -67,10 +59,7 @@ void	event_loop(void *param)
 		move_player(&game->player, MOVE_LEFT, delta_time);
 	if (game->keys.d)
 		move_player(&game->player, MOVE_RIGHT, delta_time);
-	if (game->keys.left)
-		rotate_player(&game->player, ROTATION_LEFT, delta_time);
-	if (game->keys.right)
-		rotate_player(&game->player, ROTATION_RIGHT, delta_time);
+	rotate_player(game, &game->player, delta_time);
 	mlx_clear_window(game->mlx.ctx, game->mlx.win,
 		(mlx_color){.rgba = 0x000000FF});
 	raycast(game);

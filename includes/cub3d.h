@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:01:25 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/10 20:21:22 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:50:22 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define WINDOW_WIDTH 1280
 # define WINDOW_HEIGHT 720
 # define MOVE_SPEED 4
-# define ROTATE_SPEED 2
+# define ROTATE_SPEED 1
 # define MAX_RAY_DIST 100.0
 
 typedef enum e_direction
@@ -130,8 +130,6 @@ typedef struct s_keys
 	bool	s;
 	bool	a;
 	bool	d;
-	bool	left;
-	bool	right;
 }	t_keys;
 
 typedef struct s_game
@@ -146,6 +144,7 @@ typedef struct s_game
 	t_map		map;
 	t_keys		keys;
 	t_mlx		mlx;
+	double		camera_pitch;
 	mlx_color	*scene;
 }	t_game;
 
@@ -155,7 +154,7 @@ void			event_keydown(int keycode, void *param);
 void			event_keyup(int keycode, void *param);
 
 // Events Moves
-void			rotate_player(t_player *player, int rotation,
+void			rotate_player(t_game *game, t_player *player,
 					double delta_time);
 void			move_player(t_player *player, int direction,
 					double delta_time);
