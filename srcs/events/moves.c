@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 03:22:23 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/11 17:53:35 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/12 12:23:30 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,39 +15,40 @@
 static void	update_pos_collision(t_game *game,
 	t_player *player, double x, double y)
 {
-	t_ivec2d	check;
+	t_ivec2d		check_x;
+	t_ivec2d		check_y;
+	t_ivec2d		can_move;
+	t_dvec2d		offset;
 
-	check = (t_ivec2d){(int)floor(x), (int)floor(player->pos.y)};
-	if (check.x >= 0 && check.x < (int)game->map.width && check.y >= 0
-		&& check.y < (int)game->map.height
-		&& game->map.grid[check.y][check.x] != '1')
+	offset.x = OFFSET_SLIDE_WALL * (1 - 2 * (x < player->pos.x));
+	offset.y = OFFSET_SLIDE_WALL * (1 - 2 * (y < player->pos.y));
+	check_x = (t_ivec2d){(int)floor(x + offset.x), (int)floor(player->pos.y)};
+	can_move.x = 1;
+	if (check_x.x >= 0 && check_x.x < (int)game->map.width
+		&& check_x.y >= 0 && check_x.y < (int)game->map.height
+		&& game->map.grid[check_x.y][check_x.x] == '1')
+		can_move.x = 0;
+	check_y = (t_ivec2d){(int)floor(player->pos.x), (int)floor(y + offset.y)};
+	can_move.y = 1;
+	if (check_y.x >= 0 && check_y.x < (int)game->map.width
+		&& check_y.y >= 0 && check_y.y < (int)game->map.height
+		&& game->map.grid[check_y.y][check_y.x] == '1')
+		can_move.y = 0;
+	if (can_move.x)
 		player->pos.x = x;
-	check = (t_ivec2d){(int)floor(player->pos.x), (int)floor(y)};
-	if (check.x >= 0 && check.x < (int)game->map.width && check.y >= 0
-		&& check.y < (int)game->map.height
-		&& game->map.grid[check.y][check.x] != '1')
+	if (can_move.y)
 		player->pos.y = y;
 }
 
 static void	update_pos(t_game *game, t_player *player, double x, double y)
 {
-	t_ivec2d	map;
-
-	map = (t_ivec2d){(int)floor(x), (int)floor(y)};
-	if (game->collision && (map.x < 0 || map.x >= (int)game->map.width
-			|| map.y < 0 || map.y >= (int)game->map.height))
+	if (!game->collision)
 	{
 		player->pos.x = x;
 		player->pos.y = y;
 		return ;
 	}
-	if (game->collision)
-		update_pos_collision(game, player, x, y);
-	else
-	{
-		player->pos.x = x;
-		player->pos.y = y;
-	}
+	update_pos_collision(game, player, x, y);
 }
 
 void	move_player(t_game *game,

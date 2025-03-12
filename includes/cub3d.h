@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:01:25 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/11 22:11:30 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/12 12:23:38 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define ROTATE_SPEED 1
 # define MAX_RAY_DIST 100.0
 # define DELETE_WALL_DIST 1.5
+# define OFFSET_SLIDE_WALL 0.1
 
 typedef enum e_direction
 {
