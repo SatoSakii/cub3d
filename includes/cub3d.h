@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:01:25 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/11 21:40:06 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/11 22:11:30 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ typedef struct s_game
 	t_mlx			mlx;
 	bool			collision;
 	double			camera_pitch;
+	t_textures		crosshair;
 	mlx_color		*scene;
 }	t_game;
 

@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 02:36:36 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/11 18:21:22 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/12 11:55:46 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,11 @@ int	init_textures(t_game *game, t_mlx *mlx)
 			&game->we.width, &game->we.height);
 	game->ea.img = mlx_new_image_from_file(mlx->ctx, game->ea.path,
 			&game->ea.width, &game->ea.height);
-	if (!game->no.img || !game->so.img || !game->we.img || !game->ea.img)
+	game->crosshair.img = mlx_new_image_from_file(mlx->ctx,
+			"textures/crosshair.png", &game->crosshair.width,
+			&game->crosshair.height);
+	if (!game->no.img || !game->so.img || !game->we.img || !game->ea.img
+		|| !game->crosshair.img)
 		return (PROCESS_ERR);
 	return (init_textures_regions(game, mlx));
 }

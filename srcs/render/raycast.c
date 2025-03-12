@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 01:49:49 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/11 21:28:24 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/12 11:52:54 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,4 @@ void	raycast(t_game *game)
 			finish_raycast(&ray, game, scene, (int [2]){side, x});
 		x++;
 	}
-	mlx_pixel_put_array(game->mlx.ctx, game->mlx.win,
-		0, 0, scene, WINDOW_WIDTH * WINDOW_HEIGHT);
 }

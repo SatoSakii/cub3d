@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 02:21:28 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/10 18:42:30 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/12 11:55:34 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	free_mlx(t_game *game)
 		mlx_destroy_image(game->mlx.ctx, game->we.img);
 	if (game->ea.img)
 		mlx_destroy_image(game->mlx.ctx, game->ea.img);
+	if (game->crosshair.img)
+		mlx_destroy_image(game->mlx.ctx, game->crosshair.img);
 	if (game->no.pixels)
 		free(game->no.pixels);
 	if (game->so.pixels)
