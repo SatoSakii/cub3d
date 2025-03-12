@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:01:25 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/12 12:23:38 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/12 13:23:02 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define MAX_RAY_DIST 100.0
 # define DELETE_WALL_DIST 1.5
 # define OFFSET_SLIDE_WALL 0.1
+# define MAX_SAVE_WALL 10
 
 typedef enum e_direction
 {
@@ -135,12 +136,19 @@ typedef struct s_keys
 	bool	d;
 }	t_keys;
 
+typedef struct s_destroy_save
+{
+	t_ivec2d	save[MAX_SAVE_WALL];
+	int			index;
+}	t_destroy_save;
+
 typedef struct s_game
 {
 	t_textures		no;
 	t_textures		so;
 	t_textures		ea;
 	t_textures		we;
+	t_textures		crosshair;
 	t_colors		ceiling;
 	t_colors		floor;
 	t_player		player;
@@ -149,7 +157,7 @@ typedef struct s_game
 	t_mlx			mlx;
 	bool			collision;
 	double			camera_pitch;
-	t_textures		crosshair;
+	t_destroy_save	wall_save;
 	mlx_color		*scene;
 }	t_game;
 
@@ -184,5 +192,7 @@ double			get_delta_time(void);
 void			print_fps(void);
 t_textures		init_draw(int draws[2], int side, t_game *game);
 void			*mlxcolor_memset(void *dest, uint32_t c, size_t n);
+void			destroy_wall(t_game *game);
+void			restore_wall(t_game *game);
 
 #endif

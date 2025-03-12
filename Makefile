@@ -6,7 +6,7 @@
 #    By: albernar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 17:32:26 by albernar          #+#    #+#              #
-#    Updated: 2025/03/11 17:30:30 by albernar         ###   ########.fr        #
+#    Updated: 2025/03/12 13:20:52 by albernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS 	:= 	main.c \
 			render/raycast_textures_utils.c \
 			render/raycast_utils.c \
 			render/raycast.c \
+			utils/destroy_wall.c \
 			utils/free_game.c \
 			utils/init_game.c \
 			utils/mlxcolor_memset.c \
