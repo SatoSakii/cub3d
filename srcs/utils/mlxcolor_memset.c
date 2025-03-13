@@ -6,13 +6,13 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 19:45:51 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/10 19:46:18 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/13 17:32:05 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static inline void	mlxcolor_memset_align(void *s, uint32_t c, size_t n)
+static void	mlxcolor_memset_align(void *s, uint32_t c, size_t n)
 {
 	uint64_t	c64;
 	size_t		k;
@@ -32,7 +32,7 @@ static inline void	mlxcolor_memset_align(void *s, uint32_t c, size_t n)
 	}
 }
 
-static inline void	mlxcolor_memset_prepare(void *s, uint32_t c, size_t n)
+static void	mlxcolor_memset_prepare(void *s, uint32_t c, size_t n)
 {
 	uint32_t	c32;
 

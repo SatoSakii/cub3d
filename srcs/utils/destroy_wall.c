@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 13:14:39 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/12 13:31:21 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/12 13:48:54 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ void	destroy_wall(t_game *game)
 		{
 			if (game->map.grid[ray.map.y][ray.map.x] == '1')
 			{
-				game->map.grid[ray.map.y][ray.map.x] = '0';
 				save_wall(game, ray.map.x, ray.map.y);
+				game->map.grid[ray.map.y][ray.map.x] = '0';
 			}
 		}
 	}

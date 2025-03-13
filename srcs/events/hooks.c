@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 02:10:53 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/12 13:25:21 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/13 14:02:50 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@ void	event_keydown(int keycode, void *param)
 		game->keys.d = true;
 	else if (keycode == SDL_SCANCODE_N)
 		game->collision = !game->collision;
-	else if (keycode == SDL_SCANCODE_DELETE)
+	else if (keycode == SDL_SCANCODE_Q)
 		destroy_wall(game);
-	else if (keycode == SDL_SCANCODE_INSERT)
+	else if (keycode == SDL_SCANCODE_E)
 		restore_wall(game);
+	else if (keycode == SDL_SCANCODE_LSHIFT)
+		game->player.is_running = true;
 }
 
 void	event_keyup(int keycode, void *param)
@@ -48,6 +50,8 @@ void	event_keyup(int keycode, void *param)
 		game->keys.a = false;
 	else if (keycode == SDL_SCANCODE_D)
 		game->keys.d = false;
+	else if (keycode == SDL_SCANCODE_LSHIFT)
+		game->player.is_running = false;
 }
 
 void	event_loop(void *param)

@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:01:25 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/12 13:23:02 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/13 17:31:53 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define DELETE_WALL_DIST 1.5
 # define OFFSET_SLIDE_WALL 0.1
 # define MAX_SAVE_WALL 10
+# define SPEED_FACTOR 4
 
 typedef enum e_direction
 {
@@ -94,6 +95,7 @@ typedef struct s_player
 	t_dvec2d	dir;
 	t_dvec2d	pos;
 	t_dvec2d	plane;
+	bool		is_running;
 }	t_player;
 
 typedef struct s_map

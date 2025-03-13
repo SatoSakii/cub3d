@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 03:22:23 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/12 12:23:30 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/13 14:04:29 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,26 +55,28 @@ void	move_player(t_game *game,
 	t_player *player, int direction, double delta_time)
 {
 	t_dvec2d	new_pos;
+	int			ms;
 
+	ms = MOVE_SPEED + player->is_running * SPEED_FACTOR;
 	if (direction == MOVE_FORWARD)
 	{
-		new_pos.x = player->pos.x + player->dir.x * MOVE_SPEED * delta_time;
-		new_pos.y = player->pos.y + player->dir.y * MOVE_SPEED * delta_time;
+		new_pos.x = player->pos.x + player->dir.x * ms * delta_time;
+		new_pos.y = player->pos.y + player->dir.y * ms * delta_time;
 	}
 	else if (direction == MOVE_BACKWARD)
 	{
-		new_pos.x = player->pos.x - player->dir.x * MOVE_SPEED * delta_time;
-		new_pos.y = player->pos.y - player->dir.y * MOVE_SPEED * delta_time;
+		new_pos.x = player->pos.x - player->dir.x * ms * delta_time;
+		new_pos.y = player->pos.y - player->dir.y * ms * delta_time;
 	}
 	else if (direction == MOVE_LEFT)
 	{
-		new_pos.x = player->pos.x - player->dir.y * MOVE_SPEED * delta_time;
-		new_pos.y = player->pos.y + player->dir.x * MOVE_SPEED * delta_time;
+		new_pos.x = player->pos.x - player->dir.y * ms * delta_time;
+		new_pos.y = player->pos.y + player->dir.x * ms * delta_time;
 	}
 	else if (direction == MOVE_RIGHT)
 	{
-		new_pos.x = player->pos.x + player->dir.y * MOVE_SPEED * delta_time;
-		new_pos.y = player->pos.y - player->dir.x * MOVE_SPEED * delta_time;
+		new_pos.x = player->pos.x + player->dir.y * ms * delta_time;
+		new_pos.y = player->pos.y - player->dir.x * ms * delta_time;
 	}
 	update_pos(game, player, new_pos.x, new_pos.y);
 }

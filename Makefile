@@ -6,13 +6,13 @@
 #    By: albernar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 17:32:26 by albernar          #+#    #+#              #
-#    Updated: 2025/03/12 13:20:52 by albernar         ###   ########.fr        #
+#    Updated: 2025/03/13 17:06:32 by albernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # VARIABLES
 CC 		:= cc
-FLAGS 	:= -Wall -Wextra -Werror
+FLAGS 	:= -Wall -Wextra -Werror -g
 
 # FOLDERS
 OBJ_DIR = .build
@@ -22,6 +22,8 @@ SRC_DIR	= srcs
 LIBMLX_PATH = ./lib/MacroLibX
 
 LIBFT_PATH	= ./lib/libft
+
+CIMGUI_PATH = ./lib/cimgui
 
 SRCS 	:= 	main.c \
 			events/hooks.c \
@@ -61,8 +63,8 @@ NAME = cub3D
 # RULES
 all: $(NAME)
 
-$(NAME): $(LIBMLX_PATH)/libmlx.so  $(LIBFT_PATH)/libft.a $(OBJS)
-	@$(CC) $(FLAGS) $(OBJS) $(LIBFT_PATH)/libft.a $(LIBMLX_PATH)/libmlx.so -lSDL2 -lm -o $(NAME)
+$(NAME): $(LIBMLX_PATH)/libmlx.so  $(LIBFT_PATH)/libft.a $(CIMGUI_PATH)/cimgui.so $(OBJS)
+	@$(CC) $(FLAGS) $(OBJS) $(LIBFT_PATH)/libft.a $(LIBMLX_PATH)/libmlx.so $(CIMGUI_PATH)/cimgui.so -lSDL2 -lm -o $(NAME)
 	@echo " $(GREEN)$(BOLD)$(ITALIC)■$(RESET)  building	$(GREEN)$(BOLD)$(ITALIC)$(NAME)$(RESET)"
 
 $(LIBMLX_PATH)/libmlx.so:
@@ -75,14 +77,20 @@ $(LIBFT_PATH)/libft.a:
 	@make -C $(LIBFT_PATH) -s
 	@echo "$(GREEN)Libft created successfully!$(RESET)"
 
+$(CIMGUI_PATH)/cimgui.so:
+	@echo "$(YELLOW)Compiling Cimgui...$(RESET)"
+	@make -C $(CIMGUI_PATH) -s
+	@echo "$(GREEN)Cimgui created successfully!$(RESET)"
+
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	@echo " $(CYAN)$(BOLD)$(ITALIC)■$(RESET)  compiling	$(GRAY)$(BOLD)$(ITALIC)$^$(RESET)"
-	@$(CC) $(FLAGS) -Iincludes -Ilib/libft/includes -Ilib/MacroLibX/includes -o $@ -c $<
+	@$(CC) $(FLAGS) -Iincludes -Ilib/libft/includes -Ilib/MacroLibX/includes -Ilib/cimgui -o $@ -c $<
 	
 clean:
 	@make clean -C $(LIBFT_PATH) -s
 	@make clean -C $(LIBMLX_PATH) -s
+	@make clean -C $(CIMGUI_PATH) -s
 	@echo " $(RED)$(BOLD)$(ITALIC)■$(RESET)  cleaned	$(RED)$(BOLD)$(ITALIC)$(MLX_DIR)$(RESET)"
 	@rm -rf $(OBJ_DIR)
 	
@@ -90,12 +98,13 @@ fclean: clean
 	@echo "$(RED)Cleaning MLX42 files...$(RESET)"
 	@make fclean -C $(LIBMLX_PATH) -s
 	@make fclean -C $(LIBFT_PATH) -s
+	@make fclean -C $(CIMGUI_PATH) -s
 	@echo "$(RED)Cleaning executables...$(RESET)"
 	@rm -f $(NAME)
 	
-re: clean all
-
 remake: fclean all
+
+re: clean all
 
 .PHONY: all clean fclean re
 
