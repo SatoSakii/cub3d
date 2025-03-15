@@ -6,7 +6,7 @@
 /*   By: stetrel <stetrel@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 12:03:42 by stetrel           #+#    #+#             */
-/*   Updated: 2025/03/15 22:51:58 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/03/16 00:15:59 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void rotate_point(float *x, float *y, float cx, float cy, float theta)
 {
     float dx = *x - cx;
     float dy = *y - cy;
-    *x = cx + (dx * cos(theta) - dy * sin(theta));
-    *y = cy + (dx * sin(theta) + dy * cos(theta));
+    *x = cx + (dx * cos(-theta) - dy * sin(-theta));
+    *y = cy + (dx * sin(-theta) + dy * cos(-theta));
 
 }
 
@@ -49,16 +49,14 @@ static void draw_square(t_game *game, float x, float y, bool flag, float theta)
     int tmp_x, tmp_y;
     int width = WINDOW_WIDTH;
     int index;
-	__attribute__((unused))
 	float	xdx, xdy;
-	__attribute__((unused))
 	float	ydx, ydy;
 
     tmp_x = 0;
 	xdx = 0;
 	xdy = 0;
-	float	cos_theta = cos(theta);
-	float	sin_theta = sin(theta);
+	float	cos_theta = cos(-theta);
+	float	sin_theta = sin(-theta);
     while (tmp_x < SQUARE_SIZE)
     {
         tmp_y = 0;
@@ -68,11 +66,9 @@ static void draw_square(t_game *game, float x, float y, bool flag, float theta)
         {
 			size_t	px = (x + xdx - ydx);
 			size_t	py = (y + xdy + ydy);
-			//size_t	px = (x + tmp_x * cos(-theta) - tmp_y * sin(-theta));
-			//size_t	py = (y + tmp_x * sin(-theta) + tmp_y * cos(-theta));
 			index = py  * width + px;
             if (index < 0 || index >= WINDOW_WIDTH * WINDOW_HEIGHT)
-                return;
+                return ;
             if (flag)
                 game->scene[index].rgba = 0x555C54FF;
             else
@@ -121,14 +117,14 @@ void print_minimap(t_game *game, int pos)
     if (pos & 0b1000)
         map_y = OFFSET;
     else
-        map_y = WINDOW_HEIGHT - ((game->map.height * SQUARE_SIZE) - MINIMAP_R) + OFFSET;
+        map_y = WINDOW_HEIGHT - ((game->map.height * SQUARE_SIZE) - MINIMAP_R) - OFFSET;
 
     if (pos & 0b0010)
         map_x = OFFSET;
     else
         map_x = WINDOW_WIDTH - ((game->map.width * SQUARE_SIZE) - MINIMAP_R) + OFFSET;
     draw_minimap_background(game, map_x + MINIMAP_R, map_y + MINIMAP_R);
-	float player_angle = atan2f(game->player.dir.y, game->player.dir.x);
+	float player_angle = -atan2f(game->player.dir.y, game->player.dir.x) + M_PI_2;
     for (size_t y = 0; y < game->map.height; y++)
     {
         for (size_t x = 0; x < game->map.width; x++)
