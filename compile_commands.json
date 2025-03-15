@@ -1,0 +1,444 @@
+[
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/main.o",
+   "-c",
+   "srcs/main.c"
+  ],
+  "file": "srcs/main.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/events/hooks.o",
+   "-c",
+   "srcs/events/hooks.c"
+  ],
+  "file": "srcs/events/hooks.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/events/moves.o",
+   "-c",
+   "srcs/events/moves.c"
+  ],
+  "file": "srcs/events/moves.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/parsing/args/args_validation.o",
+   "-c",
+   "srcs/parsing/args/args_validation.c"
+  ],
+  "file": "srcs/parsing/args/args_validation.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/parsing/data/colors/parse_colors.o",
+   "-c",
+   "srcs/parsing/data/colors/parse_colors.c"
+  ],
+  "file": "srcs/parsing/data/colors/parse_colors.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/parsing/data/map/map_creator.o",
+   "-c",
+   "srcs/parsing/data/map/map_creator.c"
+  ],
+  "file": "srcs/parsing/data/map/map_creator.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/parsing/data/map/map_validation.o",
+   "-c",
+   "srcs/parsing/data/map/map_validation.c"
+  ],
+  "file": "srcs/parsing/data/map/map_validation.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/parsing/data/map/parse_map.o",
+   "-c",
+   "srcs/parsing/data/map/parse_map.c"
+  ],
+  "file": "srcs/parsing/data/map/parse_map.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/parsing/data/textures/parse_textures.o",
+   "-c",
+   "srcs/parsing/data/textures/parse_textures.c"
+  ],
+  "file": "srcs/parsing/data/textures/parse_textures.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/parsing/data/parse_file.o",
+   "-c",
+   "srcs/parsing/data/parse_file.c"
+  ],
+  "file": "srcs/parsing/data/parse_file.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/parsing/data/parse_utils.o",
+   "-c",
+   "srcs/parsing/data/parse_utils.c"
+  ],
+  "file": "srcs/parsing/data/parse_utils.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/parsing/dynamic_parser/parser_getter_list.o",
+   "-c",
+   "srcs/parsing/dynamic_parser/parser_getter_list.c"
+  ],
+  "file": "srcs/parsing/dynamic_parser/parser_getter_list.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/parsing/dynamic_parser/parser_getter.o",
+   "-c",
+   "srcs/parsing/dynamic_parser/parser_getter.c"
+  ],
+  "file": "srcs/parsing/dynamic_parser/parser_getter.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/parsing/dynamic_parser/parser_register.o",
+   "-c",
+   "srcs/parsing/dynamic_parser/parser_register.c"
+  ],
+  "file": "srcs/parsing/dynamic_parser/parser_register.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/parsing/dynamic_parser/parser_utils.o",
+   "-c",
+   "srcs/parsing/dynamic_parser/parser_utils.c"
+  ],
+  "file": "srcs/parsing/dynamic_parser/parser_utils.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/parsing/dynamic_parser/parser.o",
+   "-c",
+   "srcs/parsing/dynamic_parser/parser.c"
+  ],
+  "file": "srcs/parsing/dynamic_parser/parser.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/parsing/error/error_ctx.o",
+   "-c",
+   "srcs/parsing/error/error_ctx.c"
+  ],
+  "file": "srcs/parsing/error/error_ctx.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/parsing/error/error_print.o",
+   "-c",
+   "srcs/parsing/error/error_print.c"
+  ],
+  "file": "srcs/parsing/error/error_print.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/render/raycast_textures_utils.o",
+   "-c",
+   "srcs/render/raycast_textures_utils.c"
+  ],
+  "file": "srcs/render/raycast_textures_utils.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/render/raycast_utils.o",
+   "-c",
+   "srcs/render/raycast_utils.c"
+  ],
+  "file": "srcs/render/raycast_utils.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/render/raycast.o",
+   "-c",
+   "srcs/render/raycast.c"
+  ],
+  "file": "srcs/render/raycast.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/utils/free_game.o",
+   "-c",
+   "srcs/utils/free_game.c"
+  ],
+  "file": "srcs/utils/free_game.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/utils/init_game.o",
+   "-c",
+   "srcs/utils/init_game.c"
+  ],
+  "file": "srcs/utils/init_game.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/utils/mlxcolor_memset.o",
+   "-c",
+   "srcs/utils/mlxcolor_memset.c"
+  ],
+  "file": "srcs/utils/mlxcolor_memset.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/utils/times.o",
+   "-c",
+   "srcs/utils/times.c"
+  ],
+  "file": "srcs/utils/times.c"
+ },
+ {
+  "directory": "/nfs/homes/stetrel/42cursus/cub3d_minimap",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Wextra",
+   "-Werror",
+   "-Iincludes",
+   "-Ilib/libft/includes",
+   "-Ilib/MacroLibX/includes",
+   "-o",
+   ".build/srcs/minimap/minimap.o",
+   "-c",
+   "srcs/minimap/minimap.c"
+  ],
+  "file": "srcs/minimap/minimap.c"
+ }
+]

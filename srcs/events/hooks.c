@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 02:10:53 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/12 11:54:26 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/14 14:57:13 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void	event_loop(void *param)
 	mlx_clear_window(game->mlx.ctx, game->mlx.win,
 		(mlx_color){.rgba = 0x000000FF});
 	raycast(game);
+	print_minimap(game, TOP_RIGHT);
 	mlx_pixel_put_array(game->mlx.ctx, game->mlx.win,
 		0, 0, game->scene, WINDOW_WIDTH * WINDOW_HEIGHT);
 	mlx_put_image_to_window(game->mlx.ctx, game->mlx.win, game->crosshair.img,

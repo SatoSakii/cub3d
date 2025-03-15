@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:01:25 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/11 22:11:30 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/14 13:37:02 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@
 # define ROTATE_SPEED 1
 # define MAX_RAY_DIST 100.0
 # define DELETE_WALL_DIST 1.5
+
+typedef enum e_map_pos
+{
+	TOP_LEFT = 0b1010,
+	BOTTOM_LEFT = 0b0110,
+	TOP_RIGHT = 0b1001,
+	BOTTOM_RIGHT = 0b0101
+	
+}t_map_pos;
 
 typedef enum e_direction
 {
@@ -183,5 +192,8 @@ double			get_delta_time(void);
 void			print_fps(void);
 t_textures		init_draw(int draws[2], int side, t_game *game);
 void			*mlxcolor_memset(void *dest, uint32_t c, size_t n);
+
+//minimap
+void print_minimap(t_game *game, int pos);
 
 #endif

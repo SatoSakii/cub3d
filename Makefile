@@ -6,7 +6,7 @@
 #    By: albernar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 17:32:26 by albernar          #+#    #+#              #
-#    Updated: 2025/03/11 17:30:30 by albernar         ###   ########.fr        #
+#    Updated: 2025/03/12 12:15:18 by stetrel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRCS 	:= 	main.c \
 			utils/init_game.c \
 			utils/mlxcolor_memset.c \
 			utils/times.c \
+			minimap/minimap.c \
 
 SRCS	:=	$(addprefix $(SRC_DIR)/, $(SRCS))
 
