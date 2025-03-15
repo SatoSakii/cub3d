@@ -6,13 +6,13 @@
 #    By: albernar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 17:32:26 by albernar          #+#    #+#              #
-#    Updated: 2025/03/12 12:15:18 by stetrel          ###   ########.fr        #
+#    Updated: 2025/03/15 22:52:14 by stetrel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # VARIABLES
 CC 		:= cc
-FLAGS 	:= -Wall -Wextra -Werror
+FLAGS 	:= -Wall -Wextra -Werror -O3
 
 # FOLDERS
 OBJ_DIR = .build

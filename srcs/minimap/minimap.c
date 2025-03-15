@@ -6,7 +6,7 @@
 /*   By: stetrel <stetrel@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 12:03:42 by stetrel           #+#    #+#             */
-/*   Updated: 2025/03/15 22:22:25 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/03/15 22:51:58 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void rotate_point(float *x, float *y, float cx, float cy, float theta)
 {
     float dx = *x - cx;
     float dy = *y - cy;
-    *x = cx + (dx * cos(-theta) - dy * sin(-theta));
-    *y = cy + (dx * sin(-theta) + dy * cos(-theta));
+    *x = cx + (dx * cos(theta) - dy * sin(theta));
+    *y = cy + (dx * sin(theta) + dy * cos(theta));
 
 }
 
@@ -57,28 +57,20 @@ static void draw_square(t_game *game, float x, float y, bool flag, float theta)
     tmp_x = 0;
 	xdx = 0;
 	xdy = 0;
-	ydx = 0;
-	ydy = 0;
- //   index = (y + xdy + ydy) * width + (x + xdx + ydx);
-	(void)theta;
+	float	cos_theta = cos(theta);
+	float	sin_theta = sin(theta);
     while (tmp_x < SQUARE_SIZE)
     {
         tmp_y = 0;
-	//	xdx += cos(theta);
-	//	xdy += sin(theta);
-	//	printf("xdx = %f | xdy = %f\n", xdx, xdy);
+		ydx = 0;
+		ydy = 0;
         while (tmp_y < SQUARE_SIZE)
         {
-			//ydx += sin(theta);
-			//ydy += cos(theta);
-			//
-		//	x = cx + (dx * cos(-theta) - dy * sin(-theta));
-		//	y = cy + (dx * sin(-theta) + dy * cos(-theta));
-         //   index = (y + (tmp_x * sin(-theta)) + (tmp_y * cos(-theta))) * width + (x + (tmp_x * cos(-theta)) - tmp_y * sin(-theta));
-			size_t	px = (x + tmp_x * cos(-theta) - tmp_y * sin(-theta));
-			size_t	py = (y + tmp_x * sin(-theta) + tmp_y * cos(-theta));
+			size_t	px = (x + xdx - ydx);
+			size_t	py = (y + xdy + ydy);
+			//size_t	px = (x + tmp_x * cos(-theta) - tmp_y * sin(-theta));
+			//size_t	py = (y + tmp_x * sin(-theta) + tmp_y * cos(-theta));
 			index = py  * width + px;
-			//index = (y + tmp_y * cos(-theta)) * width + (x + tmp_x * sin(-theta));
             if (index < 0 || index >= WINDOW_WIDTH * WINDOW_HEIGHT)
                 return;
             if (flag)
@@ -86,8 +78,12 @@ static void draw_square(t_game *game, float x, float y, bool flag, float theta)
             else
                 game->scene[index].rgba = 0xF6F6DAFF;
             tmp_y++;
+			ydx += sin_theta;
+			ydy += cos_theta;
         }
         tmp_x++;
+		xdx += cos_theta;
+		xdy += sin_theta;
     }
 }
 
