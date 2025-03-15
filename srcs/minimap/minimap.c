@@ -6,7 +6,7 @@
 /*   By: stetrel <stetrel@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 12:03:42 by stetrel           #+#    #+#             */
-/*   Updated: 2025/03/15 22:12:03 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/03/15 22:22:25 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,12 @@ static void draw_minimap_background(t_game *game, int minimap_x, int minimap_y)
         }
     }
 }
-static void draw_square(t_game *game, size_t x, size_t y, bool flag, float theta)
+static void draw_square(t_game *game, float x, float y, bool flag, float theta)
 {
     int tmp_x, tmp_y;
     int width = WINDOW_WIDTH;
     int index;
+	__attribute__((unused))
 	float	xdx, xdy;
 	__attribute__((unused))
 	float	ydx, ydy;
@@ -58,7 +59,7 @@ static void draw_square(t_game *game, size_t x, size_t y, bool flag, float theta
 	xdy = 0;
 	ydx = 0;
 	ydy = 0;
-    index = (y + xdy + ydy) * width + (x + xdx + ydx);
+ //   index = (y + xdy + ydy) * width + (x + xdx + ydx);
 	(void)theta;
     while (tmp_x < SQUARE_SIZE)
     {
@@ -74,7 +75,9 @@ static void draw_square(t_game *game, size_t x, size_t y, bool flag, float theta
 		//	x = cx + (dx * cos(-theta) - dy * sin(-theta));
 		//	y = cy + (dx * sin(-theta) + dy * cos(-theta));
          //   index = (y + (tmp_x * sin(-theta)) + (tmp_y * cos(-theta))) * width + (x + (tmp_x * cos(-theta)) - tmp_y * sin(-theta));
-			index = (y + tmp_y) * width + (x + tmp_x);
+			size_t	px = (x + tmp_x * cos(-theta) - tmp_y * sin(-theta));
+			size_t	py = (y + tmp_x * sin(-theta) + tmp_y * cos(-theta));
+			index = py  * width + px;
 			//index = (y + tmp_y * cos(-theta)) * width + (x + tmp_x * sin(-theta));
             if (index < 0 || index >= WINDOW_WIDTH * WINDOW_HEIGHT)
                 return;
