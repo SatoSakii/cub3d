@@ -6,7 +6,7 @@
 /*   By: stetrel <stetrel@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 12:03:42 by stetrel           #+#    #+#             */
-/*   Updated: 2025/03/16 00:15:59 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/03/16 09:47:55 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void print_minimap(t_game *game, int pos)
     else
         map_x = WINDOW_WIDTH - ((game->map.width * SQUARE_SIZE) - MINIMAP_R) + OFFSET;
     draw_minimap_background(game, map_x + MINIMAP_R, map_y + MINIMAP_R);
-	float player_angle = -atan2f(game->player.dir.y, game->player.dir.x) + M_PI_2;
+	float player_angle = -atan2f(game->player.dir.x, game->player.dir.y) + M_PI;
     for (size_t y = 0; y < game->map.height; y++)
     {
         for (size_t x = 0; x < game->map.width; x++)
