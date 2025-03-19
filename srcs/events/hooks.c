@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 02:10:53 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/19 15:46:21 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/03/19 19:16:13 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ void	update_packet(t_packet *packet, t_game *game)
 {
 	packet->px = game->player.pos.x;
 	packet->py = game->player.pos.y;
-	packet->wx = 0;
-	packet->wy = 0;
 	packet->shoot = 0;
 }
 
@@ -68,7 +66,6 @@ void	event_loop(void *param)
 {
 	t_game	*game;
 	double	delta_time;
-	t_packet	packet;
 
 	delta_time = get_delta_time();
 	game = (t_game *)param;
@@ -84,11 +81,13 @@ void	event_loop(void *param)
 	mlx_clear_window(game->mlx.ctx, game->mlx.win,
 		(mlx_color){.rgba = 0x000000FF});
 	raycast(game);
-	update_packet(&packet, game);
-	ssize_t bytes_send = send(game->client_socket, &packet, sizeof(packet), MSG_CONFIRM);
+	update_packet(&game->packet, game);
+	ssize_t bytes_send = send(game->client_socket, &game->packet, sizeof(game->packet), MSG_CONFIRM);
 	if (bytes_send < 0)
 		perror("send");
-	printf("Nombre de bytes envoyees = %zd\n", bytes_send);
+	read(game->client_socket, &game->packet, sizeof(game->packet));
+	game->map.grid[game->packet.wy][game->packet.wx] = '0';
+	memset(&game->packet, 0, sizeof(game->packet));
 	mlx_pixel_put_array(game->mlx.ctx, game->mlx.win,
 		0, 0, game->scene, WINDOW_WIDTH * WINDOW_HEIGHT);
 	mlx_put_image_to_window(game->mlx.ctx, game->mlx.win, game->crosshair.img,

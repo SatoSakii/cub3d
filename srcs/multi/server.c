@@ -6,19 +6,21 @@
 /*   By: stetrel <stetrel@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:34:08 by stetrel           #+#    #+#             */
-/*   Updated: 2025/03/19 16:58:10 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/03/19 19:18:00 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <netinet/in.h>
 #include <stdio.h>
 #include <sys/select.h>
+#include <sys/socket.h>
 #include <unistd.h>
 #include "server.h"
 
 static void	deconnect_client(struct pollfd *pollfds, int who_left)
 {
-	
+	pollfds[who_left] = pollfds[MAX_PLAYERS + 1];
+	pollfds[MAX_PLAYERS + 1] = (struct pollfd){0};
 }
 
 int	init_server(t_server *server)
@@ -92,6 +94,7 @@ int	server_wait_loop(t_server *server)
 					if (bytes_read == 0)
 					{
 						printf("Deconnexion\n");
+						deconnect_client(server->pollfds, i);
 						break ;
 					}
 					printf("packet read = [%d | %d | %u | %u | %d]\n", packet.px, packet.py, packet.wx, packet.wy, packet.shoot);
@@ -106,8 +109,8 @@ int	server_wait_loop(t_server *server)
 		i = 1;
 		while (i < server->client_count)
 		{
+			send(server->pollfds[i].fd, &packet, sizeof(packet), MSG_CONFIRM);
 			i++;
-			//send(server->pollfds[i], )
 			// send ALL INFORMATIONS to ALL clients
 		}
 	}

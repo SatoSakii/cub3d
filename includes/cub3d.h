@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:01:25 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/19 13:21:01 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/03/19 19:17:15 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ typedef struct s_game
 	t_server		server;
 	int				client_socket;
 	struct sockaddr_in	serv_addr;
+	t_packet		packet;
 }	t_game;
 
 // Events Hooks

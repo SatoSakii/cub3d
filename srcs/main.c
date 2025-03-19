@@ -6,11 +6,12 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 00:23:18 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/19 15:26:12 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/03/19 19:05:12 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "mlx.h"
 #include <sys/socket.h>
 
 int	parse_file(int argc, char **argv, t_error_ctx *ctx, t_game *game)
@@ -59,6 +60,7 @@ int	main(int argc, char **argv)
 		printf("\n Socket creation error \n");
 		return -1;
 	}
+	game.packet = (t_packet){0};
 	game.serv_addr.sin_family = AF_INET;
 	game.serv_addr.sin_port = htons(PORT);
 	if(inet_pton(AF_INET, "127.0.0.1", &game.serv_addr.sin_addr) <= 0)
@@ -71,6 +73,7 @@ int	main(int argc, char **argv)
 		printf("\nConnection Failed \n");
 		return -1;
 	}
+	mlx_set_fps_goal(game.mlx.ctx, 60);
 	mlx_on_event(game.mlx.ctx, game.mlx.win, MLX_KEYDOWN, event_keydown, &game);
 	mlx_on_event(game.mlx.ctx, game.mlx.win, MLX_KEYUP, event_keyup, &game);
 	mlx_add_loop_hook(game.mlx.ctx, event_loop, &game);
