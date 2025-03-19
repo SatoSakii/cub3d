@@ -6,11 +6,12 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 00:23:18 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/13 14:36:54 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:26:12 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <sys/socket.h>
 
 int	parse_file(int argc, char **argv, t_error_ctx *ctx, t_game *game)
 {
@@ -52,6 +53,23 @@ int	main(int argc, char **argv)
 	{
 		free_game(&game);
 		return (1);
+	}
+	if ((game.client_socket = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+	{
+		printf("\n Socket creation error \n");
+		return -1;
+	}
+	game.serv_addr.sin_family = AF_INET;
+	game.serv_addr.sin_port = htons(PORT);
+	if(inet_pton(AF_INET, "127.0.0.1", &game.serv_addr.sin_addr) <= 0)
+	{
+		printf("\nInvalid address/ Address not supported \n");
+		return -1;
+	}
+	if (connect(game.client_socket, (struct sockaddr *)&game.serv_addr, sizeof(game.serv_addr)) < 0)
+	{
+		printf("\nConnection Failed \n");
+		return -1;
 	}
 	mlx_on_event(game.mlx.ctx, game.mlx.win, MLX_KEYDOWN, event_keydown, &game);
 	mlx_on_event(game.mlx.ctx, game.mlx.win, MLX_KEYUP, event_keyup, &game);

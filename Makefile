@@ -6,7 +6,7 @@
 #    By: albernar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 17:32:26 by albernar          #+#    #+#              #
-#    Updated: 2025/03/13 17:06:32 by albernar         ###   ########.fr        #
+#    Updated: 2025/03/19 12:40:51 by stetrel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,9 @@ FLAGS 	:= -Wall -Wextra -Werror -g
 
 # FOLDERS
 OBJ_DIR = .build
+
+OBJ_DIR_SERVER = .build_server
+
 SRC_DIR	= srcs
 
 # SOURCES
@@ -57,15 +60,27 @@ SRCS	:=	$(addprefix $(SRC_DIR)/, $(SRCS))
 # OBJECTS
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
+SRCS_SERVER	:= multi/server.c \
+
+SRCS_SERVER	:=	$(addprefix $(SRC_DIR)/, $(SRCS_SERVER))
+
+
+OBJS_SERVER = $(addprefix $(OBJ_DIR_SERVER)/, $(SRCS_SERVER:.c=.o))
+
 # EXECUTABLES
 NAME = cub3D
+
+SERVER_NAME	= server
 
 # RULES
 all: $(NAME)
 
-$(NAME): $(LIBMLX_PATH)/libmlx.so  $(LIBFT_PATH)/libft.a $(CIMGUI_PATH)/cimgui.so $(OBJS)
-	@$(CC) $(FLAGS) $(OBJS) $(LIBFT_PATH)/libft.a $(LIBMLX_PATH)/libmlx.so $(CIMGUI_PATH)/cimgui.so -lSDL2 -lm -o $(NAME)
+$(NAME): $(LIBMLX_PATH)/libmlx.so  $(LIBFT_PATH)/libft.a $(OBJS)
+	@$(CC) $(FLAGS) $(OBJS) $(LIBFT_PATH)/libft.a $(LIBMLX_PATH)/libmlx.so -lSDL2 -lm -o $(NAME)
 	@echo " $(GREEN)$(BOLD)$(ITALIC)■$(RESET)  building	$(GREEN)$(BOLD)$(ITALIC)$(NAME)$(RESET)"
+
+server: $(OBJS_SERVER)
+	@$(CC) $(FLAGS) $(OBJS_SERVER) $(LIBFT_PATH)/libft.a -o $(SERVER_NAME)
 
 $(LIBMLX_PATH)/libmlx.so:
 	@echo "$(YELLOW)Compiling MLX42...$(RESET)"
@@ -86,21 +101,26 @@ $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	@echo " $(CYAN)$(BOLD)$(ITALIC)■$(RESET)  compiling	$(GRAY)$(BOLD)$(ITALIC)$^$(RESET)"
 	@$(CC) $(FLAGS) -Iincludes -Ilib/libft/includes -Ilib/MacroLibX/includes -Ilib/cimgui -o $@ -c $<
+
+$(OBJ_DIR_SERVER)/%.o: %.c
+	@mkdir -p $(dir $@)
+	@echo " $(CYAN)$(BOLD)$(ITALIC)■$(RESET)  compiling	$(GRAY)$(BOLD)$(ITALIC)$^$(RESET)"
+	@$(CC) $(FLAGS) -Iincludes -Ilib/libft/includes -o $@ -c $<
 	
 clean:
 	@make clean -C $(LIBFT_PATH) -s
 	@make clean -C $(LIBMLX_PATH) -s
-	@make clean -C $(CIMGUI_PATH) -s
 	@echo " $(RED)$(BOLD)$(ITALIC)■$(RESET)  cleaned	$(RED)$(BOLD)$(ITALIC)$(MLX_DIR)$(RESET)"
 	@rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR_SERVER)
 	
 fclean: clean
 	@echo "$(RED)Cleaning MLX42 files...$(RESET)"
 	@make fclean -C $(LIBMLX_PATH) -s
 	@make fclean -C $(LIBFT_PATH) -s
-	@make fclean -C $(CIMGUI_PATH) -s
 	@echo "$(RED)Cleaning executables...$(RESET)"
 	@rm -f $(NAME)
+	@rm -f $(SERVER_NAME)
 	
 remake: fclean all
 

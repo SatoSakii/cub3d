@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 01:01:25 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/13 17:31:53 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/19 13:21:01 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "dynamic_parser.h"
 # include "error.h"
 # include "colors.h"
+#include "server.h"
 # include <fcntl.h>
 # include <unistd.h>
 # include <errno.h>
@@ -161,6 +162,9 @@ typedef struct s_game
 	double			camera_pitch;
 	t_destroy_save	wall_save;
 	mlx_color		*scene;
+	t_server		server;
+	int				client_socket;
+	struct sockaddr_in	serv_addr;
 }	t_game;
 
 // Events Hooks

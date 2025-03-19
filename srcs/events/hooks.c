@@ -6,11 +6,12 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 02:10:53 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/13 14:02:50 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/19 15:46:21 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <sys/socket.h>
 
 void	event_keydown(int keycode, void *param)
 {
@@ -54,10 +55,20 @@ void	event_keyup(int keycode, void *param)
 		game->player.is_running = false;
 }
 
+void	update_packet(t_packet *packet, t_game *game)
+{
+	packet->px = game->player.pos.x;
+	packet->py = game->player.pos.y;
+	packet->wx = 0;
+	packet->wy = 0;
+	packet->shoot = 0;
+}
+
 void	event_loop(void *param)
 {
 	t_game	*game;
 	double	delta_time;
+	t_packet	packet;
 
 	delta_time = get_delta_time();
 	game = (t_game *)param;
@@ -73,10 +84,15 @@ void	event_loop(void *param)
 	mlx_clear_window(game->mlx.ctx, game->mlx.win,
 		(mlx_color){.rgba = 0x000000FF});
 	raycast(game);
+	update_packet(&packet, game);
+	ssize_t bytes_send = send(game->client_socket, &packet, sizeof(packet), MSG_CONFIRM);
+	if (bytes_send < 0)
+		perror("send");
+	printf("Nombre de bytes envoyees = %zd\n", bytes_send);
 	mlx_pixel_put_array(game->mlx.ctx, game->mlx.win,
 		0, 0, game->scene, WINDOW_WIDTH * WINDOW_HEIGHT);
 	mlx_put_image_to_window(game->mlx.ctx, game->mlx.win, game->crosshair.img,
 		WINDOW_WIDTH / 2 - game->crosshair.width / 2,
 		WINDOW_HEIGHT / 2 - game->crosshair.height / 2);
-	print_fps();
+	//print_fps();
 }
