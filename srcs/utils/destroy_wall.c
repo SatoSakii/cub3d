@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 13:14:39 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/19 19:04:17 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/03/21 09:05:49 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	restore_wall(t_game *game)
 	game->wall_save.index--;
 	x = game->wall_save.save[game->wall_save.index].x;
 	y = game->wall_save.save[game->wall_save.index].y;
+	game->packet.wx = -x;
+	game->packet.wy = -y;
 	game->map.grid[y][x] = '1';
 }
 

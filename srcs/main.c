@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 00:23:18 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/19 19:05:12 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/03/21 10:07:30 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int argc, char **argv)
 	}
 	if ((game.client_socket = socket(AF_INET, SOCK_STREAM, 0)) < 0)
 	{
-		printf("\n Socket creation error \n");
+		perror("socket");
 		return -1;
 	}
 	game.packet = (t_packet){0};
@@ -65,12 +65,12 @@ int	main(int argc, char **argv)
 	game.serv_addr.sin_port = htons(PORT);
 	if(inet_pton(AF_INET, "127.0.0.1", &game.serv_addr.sin_addr) <= 0)
 	{
-		printf("\nInvalid address/ Address not supported \n");
+		perror("inet_pton");
 		return -1;
 	}
 	if (connect(game.client_socket, (struct sockaddr *)&game.serv_addr, sizeof(game.serv_addr)) < 0)
 	{
-		printf("\nConnection Failed \n");
+		perror("connect");
 		return -1;
 	}
 	mlx_set_fps_goal(game.mlx.ctx, 60);

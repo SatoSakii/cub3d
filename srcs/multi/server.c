@@ -6,7 +6,7 @@
 /*   By: stetrel <stetrel@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:34:08 by stetrel           #+#    #+#             */
-/*   Updated: 2025/03/19 19:18:00 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/03/21 10:26:18 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,15 @@
 #include <unistd.h>
 #include "server.h"
 
-static void	deconnect_client(struct pollfd *pollfds, int who_left)
+static void deconnect_client(struct pollfd *pollfds, int *client_count, int who_left)
 {
-	pollfds[who_left] = pollfds[MAX_PLAYERS + 1];
-	pollfds[MAX_PLAYERS + 1] = (struct pollfd){0};
+    close(pollfds[who_left].fd); // Ferme le socket du client déconnecté
+    for (int i = who_left; i < *client_count - 1; i++)
+        pollfds[i] = pollfds[i + 1]; // Décale les entrées dans pollfds
+
+    (*client_count)--;
+    pollfds[*client_count].fd = -1;  // Met un fd invalide
+    pollfds[*client_count].revents = 0; // Reset revents
 }
 
 int	init_server(t_server *server)
@@ -66,6 +71,7 @@ int	server_wait_loop(t_server *server)
 	while (1)
 	{
 		poll(server->pollfds, server->client_count, -1);
+		printf("Clients actifs : %d\n", server->client_count);
 		
 		int i = 0;
 
@@ -73,37 +79,34 @@ int	server_wait_loop(t_server *server)
 		{
 			if (server->pollfds[i].revents & POLLIN)
 			{
-				printf("Client connecte ! fd = %d\n", server->pollfds[i].fd);
 				if (i == 0)
 				{
+				server->address_len = sizeof(server->address);
 				 int new_client_fd = accept(server->server_fd
 									, (struct sockaddr *restrict)&server->address
 									, (socklen_t *restrict)&server->address_len);
-					if (server->pollfds[i].fd < 0)
+					if (new_client_fd < 0)
 					{
 						perror("failed accept");
 						return (FAIL);
 					}
 					server_poll.fd = new_client_fd;
+					server_poll.events = POLLIN;  // ✅ Important
 					server->pollfds[server->client_count++] = server_poll;
 					break ;
-				}// NEW CLIENT CONNECTION [-> accept, into struct pollfd, [push into pollfds]]
+				}
 				else
 				{
 					int bytes_read = read(server->pollfds[i].fd, &packet, sizeof(t_packet));
 					if (bytes_read == 0)
 					{
-						printf("Deconnexion\n");
-						deconnect_client(server->pollfds, i);
-						break ;
+						deconnect_client(server->pollfds, &server->client_count , i);
+						continue ;
 					}
-					printf("packet read = [%d | %d | %u | %u | %d]\n", packet.px, packet.py, packet.wx, packet.wy, packet.shoot);
-					// read on server->pollfds[i].fd
-					// traiter le message
-
+					i++;
 				}
-				server->pollfds[i].revents = 0;
 			}
+			server->pollfds[i].revents = 0;
 			i++;
 		}
 		i = 1;
@@ -111,7 +114,6 @@ int	server_wait_loop(t_server *server)
 		{
 			send(server->pollfds[i].fd, &packet, sizeof(packet), MSG_CONFIRM);
 			i++;
-			// send ALL INFORMATIONS to ALL clients
 		}
 	}
 }
