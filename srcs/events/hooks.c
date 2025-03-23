@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 02:10:53 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/21 10:00:28 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/03/23 14:02:35 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	event_loop(void *param)
 		game->map.grid[abs(game->packet.wy)][abs(game->packet.wx)] = '1';
 	else
 		game->map.grid[game->packet.wy][game->packet.wx] = '0';
-	//memset(&game->packet, 0, sizeof(game->packet));
+	memset(&game->packet, 0, sizeof(game->packet));
 	mlx_pixel_put_array(game->mlx.ctx, game->mlx.win,
 		0, 0, game->scene, WINDOW_WIDTH * WINDOW_HEIGHT);
 	mlx_put_image_to_window(game->mlx.ctx, game->mlx.win, game->crosshair.img,
