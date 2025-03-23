@@ -6,7 +6,7 @@
 /*   By: stetrel <stetrel@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:34:08 by stetrel           #+#    #+#             */
-/*   Updated: 2025/03/21 10:26:18 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/03/23 12:29:39 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,11 @@ int	server_wait_loop(t_server *server)
 				else
 				{
 					int bytes_read = read(server->pollfds[i].fd, &packet, sizeof(t_packet));
+					if (bytes_read < 0)
+					{
+						perror("read");
+						continue ;
+					}
 					if (bytes_read == 0)
 					{
 						deconnect_client(server->pollfds, &server->client_count , i);
