@@ -6,7 +6,7 @@
 /*   By: stetrel <stetrel@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:34:08 by stetrel           #+#    #+#             */
-/*   Updated: 2025/03/23 14:27:00 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/03/23 19:16:00 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #include "server.h"
 #include <errno.h>
 
-#define TICK_RATE 20  // Updates per second
+#define TICK_RATE 30  // Updates per second
 #define TICK_INTERVAL_USEC (1000000 / TICK_RATE)
 
 // Make socket non-blocking
@@ -45,7 +45,6 @@ static int set_nonblocking(int socket_fd)
 // Apply all socket optimizations
 static int optimize_socket(int socket_fd)
 {
-	return (0);
     int yes = 1;
     int send_buffer_size = 8192;
     int recv_buffer_size = 8192;

@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 00:23:18 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/21 10:07:30 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/03/23 14:41:52 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	main(int argc, char **argv)
 	game.packet = (t_packet){0};
 	game.serv_addr.sin_family = AF_INET;
 	game.serv_addr.sin_port = htons(PORT);
-	if(inet_pton(AF_INET, "127.0.0.1", &game.serv_addr.sin_addr) <= 0)
+	if(inet_pton(AF_INET, argv[2], &game.serv_addr.sin_addr) <= 0)
 	{
 		perror("inet_pton");
 		return -1;

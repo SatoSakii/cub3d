@@ -6,13 +6,13 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:59:06 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/06 07:00:02 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/23 14:45:21 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	get_args_len(char **argv)
+int	get_args_len(char **argv)
 {
 	int	len;
 	int	i;
@@ -29,24 +29,25 @@ static int	get_args_len(char **argv)
 
 int	validate_argument_count(int argc, char **argv, t_error_ctx *ctx)
 {
+	(void)argc;
 	ctx->args = argv;
 	ctx->executable = argv[0];
-	if (argc < 2)
-	{
-		ctx->error_pos = ft_strlen(argv[0]);
-		ctx->error_len = 1;
-		throw_err(ERR_NOT_ENOUGH_ARGS, ctx);
-		return (PROCESS_ERR);
-	}
+	//if (argc < 2)
+	//{
+	//	ctx->error_pos = ft_strlen(argv[0]);
+	//	ctx->error_len = 1;
+	//	throw_err(ERR_NOT_ENOUGH_ARGS, ctx);
+	//	return (PROCESS_ERR);
+	//}
 	ctx->filename = argv[1];
-	if (argc > 2)
-	{
-		ctx->error_pos = ft_strlen(argv[0]) + ft_strlen(argv[1]) + 1;
-		ctx->error_len = get_args_len(argv) - ft_strlen(argv[0])
-			- ft_strlen(argv[1]) - 1;
-		throw_err(ERR_TOO_MANY_ARGS, ctx);
-		return (PROCESS_ERR);
-	}
+//	if (argc > 2)
+//	{
+//		ctx->error_pos = ft_strlen(argv[0]) + ft_strlen(argv[1]) + 1;
+//		ctx->error_len = get_args_len(argv) - ft_strlen(argv[0])
+//			- ft_strlen(argv[1]) - 1;
+//		throw_err(ERR_TOO_MANY_ARGS, ctx);
+//		return (PROCESS_ERR);
+//	}
 	return (PROCESS_OK);
 }
 
