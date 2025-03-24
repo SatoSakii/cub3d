@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 20:34:12 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/23 23:24:49 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/24 19:30:49 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_dvec3d	ft_dvec3d_scale(t_dvec3d a, double scale)
 
 double	ft_dvec3d_norm(t_dvec3d a)
 {
-	return (sqrtf(a.x * a.x + a.y * a.y + a.z * a.z));
+	return (sqrt(a.x * a.x + a.y * a.y + a.z * a.z));
 }
 
 t_dvec3d	ft_dvec3d_normalize(t_dvec3d a)
