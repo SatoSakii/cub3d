@@ -1,0 +1,6 @@
+[submodule "lib/MacroLibX"]
+	path = lib/MacroLibX
+	url = https://github.com/seekrs/MacroLibX.git
+[submodule "lib/cimgui"]
+	path = lib/cimgui
+	url = https://github.com/cimgui/cimgui.git
