@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 16:37:45 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/24 01:30:05 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/25 03:00:34 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,7 @@ int	init_mlx(t_game *game, t_mlx *mlx)
 	mlx_mouse_hide(game->mlx.ctx);
 	mlx_mouse_move(game->mlx.ctx, game->mlx.win,
 		(WINDOW_WIDTH >> 1), (WINDOW_HEIGHT >> 1));
+	init_renderer(&game->mlx);
+	setup_imgui_style();
 	return (init_textures(game, mlx));
 }

@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.c                                           :+:      :+:    :+:   */
+/*   draw_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/21 16:42:24 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/25 03:50:42 by albernar         ###   ########.fr       */
+/*   Created: 2025/03/25 02:36:04 by albernar          #+#    #+#             */
+/*   Updated: 2025/03/25 03:50:39 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	event_window(int event, void *param)
+void	draw_window(t_game *game, t_mlx *mlx)
 {
-	t_game	*game;
-
-	game = (t_game *)param;
-	if (event == 0)
-		mlx_loop_end(game->mlx.ctx);
+	(void) game;
+	(void) mlx;
+	igShowDemoWindow(NULL);
 }

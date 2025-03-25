@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 23:22:45 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/24 01:29:38 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/25 03:30:00 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	rotate_player(t_game *game, t_player *player, double delta_time)
 
 	mlx_mouse_get_pos(game->mlx.ctx, &mouse_pos.x, &mouse_pos.y);
 	if (mouse_pos.x < 0 || mouse_pos.y < 0 || mouse_pos.x > WINDOW_WIDTH
-		|| mouse_pos.y > WINDOW_HEIGHT || block_game(game))
+		|| mouse_pos.y > WINDOW_HEIGHT || block_game(game) == TRIBOOL_UNSET)
 		return ;
 	pitch_up = -(mouse_pos.y - (WINDOW_HEIGHT >> 1));
 	player->dir.z += pitch_up * player->sensitivity;

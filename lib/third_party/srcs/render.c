@@ -6,11 +6,11 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 19:11:04 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/18 19:15:56 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/25 02:37:21 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
+#include "vk_render.h"
 #include <SDL2/SDL.h>
 
 static void	vk_render(t_game *game, VkExtent2D swapchain_extent,

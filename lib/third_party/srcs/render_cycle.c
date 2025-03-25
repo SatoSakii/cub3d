@@ -6,11 +6,11 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 19:09:08 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/14 19:19:35 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/25 02:35:11 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render.h"
+#include "vk_render.h"
 
 static void	imgui_init_vulkan(t_mlx *mlx, VkSurfaceCapabilitiesKHR capabilities,
 	t_mlx_funcs *mlx_funcs)
@@ -19,6 +19,7 @@ static void	imgui_init_vulkan(t_mlx *mlx, VkSurfaceCapabilitiesKHR capabilities,
 
 	ImGui_ImplSDL2_InitForVulkan((SDL_Window *)mlx_funcs->mlx_get_window_handle
 		(mlx->ctx, mlx->win));
+	igGetIO_Nil()->ConfigFlags |= ImGuiConfigFlags_NoMouseCursorChange;
 	init_info = (ImGui_ImplVulkan_InitInfo){0};
 	init_info.Instance = mlx->render.instance;
 	init_info.PhysicalDevice = mlx->render.physical_device;
@@ -52,14 +53,15 @@ void	init_renderer(t_mlx *mlx)
 	mlx_funcs->mlx_set_sdl_input_hook(mlx->ctx,
 		(t_sdl_hook)ImGui_ImplSDL2_ProcessEvent);
 	ctx = igCreateContext(NULL);
-	igGetIO()->IniFilename = NULL;
+	igGetIO_Nil()->IniFilename = NULL;
 	mlx->render.instance = mlx_funcs->mlx_get_vk_instance(mlx->ctx);
 	mlx->render.physical_device
 		= mlx_funcs->mlx_get_vk_physical_device(mlx->ctx);
 	mlx->render.device = mlx_funcs->mlx_get_vk_device(mlx->ctx);
 	mlx->render.pool = vulkan_create_descriptor_pool(mlx->ctx);
 	mlx->render.renderpass = vulkan_create_render_pass(mlx->ctx, mlx->win);
-	ImGui_ImplVulkan_LoadFunctions(imgui_load_vulkan, mlx->render.instance);
+	ImGui_ImplVulkan_LoadFunctions(VK_API_VERSION_1_0, imgui_load_vulkan,
+		mlx->render.instance);
 	capabilities = (VkSurfaceCapabilitiesKHR){0};
 	vulkan_funcs->vk_get_phsic_dvice_surface_cap_khr
 		(mlx->render.physical_device,

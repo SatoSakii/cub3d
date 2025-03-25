@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 16:30:33 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/21 16:39:02 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/24 19:48:59 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ void	free_game(t_game *game)
 		free(game->we.addr);
 	if (game->map.grid)
 		ft_free2d((void **)game->map.grid);
+	destroy_renderer(&game->mlx);
 	free_mlx(game);
 }

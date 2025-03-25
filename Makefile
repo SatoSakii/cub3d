@@ -6,7 +6,7 @@
 #    By: albernar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 17:32:26 by albernar          #+#    #+#              #
-#    Updated: 2025/03/24 18:20:27 by albernar         ###   ########.fr        #
+#    Updated: 2025/03/25 03:46:06 by albernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,9 +33,20 @@ BONUS_DIR 		= bonus
 COMMON_DIR 		= common
 
 # SOURCES
-LIBMLX_PATH = ./lib/MacroLibX
-LIBFT_PATH	= ./lib/libft
-CIMGUI_PATH = ./lib/cimgui
+LIBMLX_PATH 	= ./lib/MacroLibX
+LIBFT_PATH		= ./lib/libft
+CIMGUI_PATH 	= ./lib/cimgui
+THIRDPARTY_PATH	= ./lib/third_party
+
+THIRDPARTY	:=	loader_utils.c \
+				loader.c \
+				render_cycle.c \
+				render.c \
+				vulkan_frame_buffers.c \
+				vulkan_pool.c \
+				vulkan_render_pass.c
+
+THIRD_PARTY	:=	$(addprefix $(THIRDPARTY_PATH)/srcs/, $(THIRDPARTY))
 
 COMMON		:=	$(COMMON_DIR)/parsing/args/args_validation.c \
 				$(COMMON_DIR)/parsing/data/colors/parse_colors.c \
@@ -66,7 +77,7 @@ SRCS		:=	$(COMMON) \
 				$(MANDATORY_DIR)/utils/game/free_game.c \
 				$(MANDATORY_DIR)/utils/game/init_game.c
 
-SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
+SRCS		:=	$(addprefix $(SRC_DIR)/, $(SRCS))
 
 SRCS_BONUS	:=	$(COMMON) \
 				$(BONUS_DIR)/core/main.c \
@@ -78,6 +89,10 @@ SRCS_BONUS	:=	$(COMMON) \
 				$(BONUS_DIR)/events/hooks/window.c \
 				$(BONUS_DIR)/events/player/collision.c \
 				$(BONUS_DIR)/events/player/move.c \
+				$(BONUS_DIR)/menu/style/colors.c \
+				$(BONUS_DIR)/menu/style/style.c \
+				$(BONUS_DIR)/menu/draw_window.c \
+				$(BONUS_DIR)/render/game/game_render.c \
 				$(BONUS_DIR)/render/raycast/raycast_draw.c \
 				$(BONUS_DIR)/render/raycast/raycast_hit.c \
 				$(BONUS_DIR)/render/raycast/raycast_init.c \
@@ -87,9 +102,10 @@ SRCS_BONUS	:=	$(COMMON) \
 				$(BONUS_DIR)/utils/game/init_mlx.c \
 				$(BONUS_DIR)/utils/game/init.c \
 				$(BONUS_DIR)/utils/game/menu.c \
-				$(BONUS_DIR)/utils/render/background.c
+				$(BONUS_DIR)/utils/render/background.c \
 
-SRCS_BONUS := $(addprefix $(SRC_DIR)/, $(SRCS_BONUS))
+SRCS_BONUS		:=	$(addprefix $(SRC_DIR)/, $(SRCS_BONUS))
+SRCS_BONUS		+=	$(THIRD_PARTY)
 
 # OBJECTS
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/mandatory/%.o, $(SRCS))

@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 16:15:04 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/24 16:58:55 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/25 03:50:36 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ int	parse_file(int argc, char **argv, t_error_ctx *ctx, t_game *game)
 
 int	main(int argc, char **argv)
 {
-	t_error_ctx	ctx;
-	t_game		game;
+	const t_mlx_funcs	*mlx_funcs = get_mlx_funcs();
+	t_error_ctx			ctx;
+	t_game				game;
 
 	init_game(&game, &ctx);
 	if (parse_file(argc, argv, &ctx, &game))
@@ -61,6 +62,8 @@ int	main(int argc, char **argv)
 		event_mousedown, &game);
 	mlx_on_event(game.mlx.ctx, game.mlx.win, MLX_MOUSEUP, event_mouseup, &game);
 	mlx_add_loop_hook(game.mlx.ctx, event_loop, &game);
+	mlx_funcs->mlx_add_pre_render_hook(game.mlx.ctx, game.mlx.win,
+		begin_render, &game);
 	mlx_loop(game.mlx.ctx);
 	free_game(&game);
 	return (0);
