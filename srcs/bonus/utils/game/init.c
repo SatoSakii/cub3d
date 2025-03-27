@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 16:31:37 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/25 03:00:22 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/27 22:50:59 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void	init_game(t_game *game, t_error_ctx *ctx)
 	ft_memset(&game->ceiling, -1, sizeof(t_colors));
 	ft_memset(&game->floor, -1, sizeof(t_colors));
 	init_map(game);
-	game->main_menu = IN_GAME;
+	game->main_menu = START_MENU;
+	game->features.unlock_cursor = true;
 	game->player.sensitivity = 1.0;
 	init_controls(&game->controls);
 }

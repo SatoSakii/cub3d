@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 16:37:45 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/25 03:00:34 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/27 22:50:47 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	init_mlx(t_game *game, t_mlx *mlx)
 	game->scene = malloc(sizeof(mlx_color) * WINDOW_WIDTH * WINDOW_HEIGHT);
 	if (!game->scene)
 		return (PROCESS_ERR);
-	mlx_mouse_hide(game->mlx.ctx);
+	mlx_mouse_show(game->mlx.ctx);
 	mlx_mouse_move(game->mlx.ctx, game->mlx.win,
 		(WINDOW_WIDTH >> 1), (WINDOW_HEIGHT >> 1));
 	init_renderer(&game->mlx);

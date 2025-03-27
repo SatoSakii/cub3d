@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 02:45:14 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/25 03:01:59 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/27 21:59:53 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	setup_imgui_style(void)
 	style->Alpha = 1.0f;
 	style->DisabledAlpha = 0.1000000014901161f;
 	style->WindowPadding = (ImVec2){8.0f, 8.0f};
-	style->WindowRounding = 10.0f;
 	style->WindowBorderSize = 0.0f;
 	imgui_style_additional(style);
 	setup_imgui_colors(style);

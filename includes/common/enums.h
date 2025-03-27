@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:20:36 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/24 16:11:15 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/27 23:05:55 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,8 @@ typedef enum e_main_menu
 {
 	START_MENU,
 	MAIN_MENU,
-	CONNECT_MENU,
 	SETTINGS_MENU,
 	CONTROLS_MENU,
-	EXIT,
 	IN_GAME
 }	t_main_menu;
 
