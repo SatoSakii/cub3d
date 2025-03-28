@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 17:07:47 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/24 18:11:30 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/28 19:25:43 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ void	print_fps(void)
 	frames++;
 	seconds = (current_ts.tv_sec - last_ts.tv_sec)
 		+ (current_ts.tv_usec - last_ts.tv_usec) / 1000000.0;
-	ft_printf("FPS: %d\n", (int)(frames / seconds));
-	frames = 0;
-	last_ts = current_ts;
+	if (seconds >= TIME_BEETWEEN_FPS_PRINT)
+	{
+		printf("FPS: %.2f\n", frames / seconds);
+		frames = 0;
+		last_ts = current_ts;
+	}
 }

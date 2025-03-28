@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 06:56:46 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/24 18:11:44 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/28 19:12:40 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ void	set_player_pos(t_game *game, int x, int y, char tile)
 	game->player.plane.y = 0;
 	game->player.dir.x = (tile == 'N') * -1 + (tile == 'S') * 1;
 	game->player.dir.y = (tile == 'W') * -1 + (tile == 'E') * 1;
-	game->player.plane.x = (tile == 'E') * 0.66 + (tile == 'W') * -0.66;
-	game->player.plane.y = (tile == 'N') * 0.66 + (tile == 'S') * -0.66;
+	game->player.plane.x = (tile == 'E') * DEFAULT_PLANE
+		+ (tile == 'W') * -DEFAULT_PLANE;
+	game->player.plane.y = (tile == 'N') * DEFAULT_PLANE
+		+ (tile == 'S') * -DEFAULT_PLANE;
 }
 
 static bool	init_player(t_game *game,

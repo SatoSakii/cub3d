@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:06:20 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/27 23:05:37 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/28 23:43:09 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,15 @@ void		perform_dda(t_ray *ray, t_game *game);
 
 void		setup_imgui_colors(ImGuiStyle *style);
 void		setup_imgui_style(void);
+
+void		draw_button(const char *text,
+				float y_pos, t_fvec2d w_h, t_game *game);
+void		draw_title(void);
+void		draw_sliders(t_game *game);
+void		settings_menu(t_game *game);
+void		start_menu(t_game *game);
+void		controls_menu(t_game *game);
+void		draw_controls_buttons(const char *text, t_ivec2d pos,
+				t_game *game, int i);
 
 #endif
