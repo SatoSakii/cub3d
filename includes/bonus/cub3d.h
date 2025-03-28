@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:06:20 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/27 23:05:37 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/28 19:31:42 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,7 @@ void		perform_dda(t_ray *ray, t_game *game);
 
 void		setup_imgui_colors(ImGuiStyle *style);
 void		setup_imgui_style(void);
+
+void		raycast_door(t_game *game);
 
 #endif

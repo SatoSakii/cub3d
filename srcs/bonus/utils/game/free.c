@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 16:30:33 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/24 19:48:59 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/28 16:26:05 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static void	free_mlx(t_game *game)
 		free(game->we.pixels);
 	if (game->ea.pixels)
 		free(game->ea.pixels);
+	if (game->door.pixels)
+		free(game->door.pixels);
 	if (game->scene)
 		free(game->scene);
 	if (game->mlx.win)
@@ -50,6 +52,7 @@ void	free_game(t_game *game)
 		free(game->we.addr);
 	if (game->map.grid)
 		ft_free2d((void **)game->map.grid);
-	destroy_renderer(&game->mlx);
+	if (game->mlx.ctx)
+		destroy_renderer(&game->mlx);
 	free_mlx(game);
 }

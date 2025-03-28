@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 17:57:26 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/21 18:07:22 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/28 16:18:50 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ t_textures	init_draw(int draws[2], int side, t_game *game)
 	if (draws[1] >= WINDOW_HEIGHT)
 		draws[1] = WINDOW_HEIGHT - 1;
 	draws[0] -= 1;
-	if (side == NORTH)
+	if (game->is_door == 'C')
+		return (game->door);
+	else if (side == NORTH)
 		return (game->no);
 	else if (side == SOUTH)
 		return (game->so);

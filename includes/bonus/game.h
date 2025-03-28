@@ -6,13 +6,14 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:29:02 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/27 23:05:35 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/28 14:32:52 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_H
 # define GAME_H
 
+#include "render.h"
 typedef struct s_player
 {
 	t_dvec3d	dir;
@@ -37,6 +38,7 @@ typedef struct s_game
 	t_textures	so;
 	t_textures	we;
 	t_textures	ea;
+	t_textures	door;
 	t_colors	floor;
 	t_colors	ceiling;
 	t_player	player;
@@ -47,6 +49,7 @@ typedef struct s_game
 	t_features	features;
 	t_main_menu	main_menu;
 	t_player	other_player[MAX_PLAYERS - 1];
+	char		is_door;
 }	t_game;
 
 #endif

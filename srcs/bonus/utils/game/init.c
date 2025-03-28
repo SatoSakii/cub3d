@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 16:31:37 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/27 22:50:59 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/28 19:42:00 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	init_map(t_game *game)
 {
 	register_tile("1");
 	register_tile("0");
+	register_tile("O");
+	register_tile("C");
 	register_direction("N");
 	register_direction("S");
 	register_direction("E");
@@ -26,6 +28,7 @@ static void	init_map(t_game *game)
 	register_texture("SO", &game->so);
 	register_texture("WE", &game->we);
 	register_texture("EA", &game->ea);
+	register_texture("DO", &game->door);
 }
 
 /*

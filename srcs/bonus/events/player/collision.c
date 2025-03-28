@@ -26,14 +26,16 @@ static void	update_pos_collide(t_game *game, t_player *player, t_dvec2d pos)
 	can_move.x = 1;
 	if (check_x.x >= 0 && check_x.x < (int)game->map.width
 		&& check_x.y >= 0 && check_x.y < (int)game->map.height
-		&& game->map.grid[check_x.y][check_x.x] == '1')
+		&& (game->map.grid[check_x.y][check_x.x] == '1'
+		|| game->map.grid[check_x.y][check_x.x] == 'C'))
 		can_move.x = 0;
 	check_y = (t_ivec2d){(int)floor(player->pos.x),
 		(int)floor(pos.y + offset.y)};
 	can_move.y = 1;
 	if (check_y.x >= 0 && check_y.x < (int)game->map.width
 		&& check_y.y >= 0 && check_y.y < (int)game->map.height
-		&& game->map.grid[check_y.y][check_y.x] == '1')
+		&& (game->map.grid[check_y.y][check_y.x] == '1'
+		|| game->map.grid[check_y.y][check_y.x] == 'C'))
 		can_move.y = 0;
 	if (can_move.x)
 		player->pos.x = pos.x;

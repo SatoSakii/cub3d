@@ -6,10 +6,11 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 16:41:53 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/25 02:08:35 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/28 19:56:10 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "controls.h"
 #include "cub3d.h"
 
 /*
@@ -96,5 +97,8 @@ void	event_keydown(int keycode, void *param)
 		if (keycode == game->controls.keys[i].keycode)
 			game->controls.keys[i].state = DOWN;
 	}
+	if (game->controls.keys[7].state == DOWN
+		&& block_game(game) == TRIBOOL_FALSE)
+		raycast_door(game);
 	handle_change_keybinds(game, keycode);
 }

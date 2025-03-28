@@ -6,7 +6,7 @@
 #    By: albernar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 17:32:26 by albernar          #+#    #+#              #
-#    Updated: 2025/03/25 03:46:06 by albernar         ###   ########.fr        #
+#    Updated: 2025/03/28 19:43:49 by stetrel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,6 +98,7 @@ SRCS_BONUS	:=	$(COMMON) \
 				$(BONUS_DIR)/render/raycast/raycast_init.c \
 				$(BONUS_DIR)/render/raycast/raycast_tex.c \
 				$(BONUS_DIR)/render/raycast/raycast.c \
+				$(BONUS_DIR)/features/doors.c \
 				$(BONUS_DIR)/utils/game/free.c \
 				$(BONUS_DIR)/utils/game/init_mlx.c \
 				$(BONUS_DIR)/utils/game/init.c \

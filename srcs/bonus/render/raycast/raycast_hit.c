@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 17:52:44 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/21 18:14:42 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/28 20:17:49 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,14 @@ void	check_hit(t_ray *ray, t_game *game, int *side)
 			break ;
 		if (ray->map.x >= 0 && ray->map.x < (int)game->map.width - 1
 			&& ray->map.y >= 0 && ray->map.y < (int)game->map.height)
+		{
 			if (game->map.grid[ray->map.y][ray->map.x] == '1')
 				ray->hit = true;
+			else if (game->map.grid[ray->map.y][ray->map.x] == 'C')
+			{
+				game->is_door = 'C';
+				ray->hit = true;
+			}
+		}
 	}
 }

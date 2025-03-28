@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 01:36:32 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/24 16:37:27 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/28 20:00:56 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	check_hit(t_ray *ray, t_game *game, int *side)
 			is_x_side = 0;
 		}
 		set_wall_side(side, ray, is_x_side);
+		ft_printf("caca\n");
 		if (check_state(ray, ray->inside_wall, game, side) == 2)
 			break ;
 	}

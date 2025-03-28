@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 17:04:07 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/27 22:38:01 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/28 20:09:05 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ void	event_loop(void *param)
 	raycast(game);
 	if (block != TRIBOOL_TRUE)
 		game_render(game, delta_time, block);
-	print_fps();
+	//print_fps();
 }
