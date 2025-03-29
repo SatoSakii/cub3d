@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:06:20 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/29 17:59:02 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/03/29 20:33:50 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,11 @@ void		fill_background(mlx_color *scene, t_game *game);
 void		*mlxcolor_memset(void *dest, uint32_t c, size_t n);
 void		perform_dda(t_ray *ray, t_game *game);
 
-void	print_minimap(t_game *game, int pos);
+void		process_pixel(t_game *game, int index, bool flag);
+void		init_minimap_position(t_game *game, int pos, t_ivec2d *map);
+void		rotate_point(t_dvec2d *m, float cx, float cy, t_theta theta);
+void		draw_minimap_background(t_game *game, int minimap_x, int minimap_y);
+void		print_minimap(t_game *game, int pos);
 
 void		setup_imgui_colors(ImGuiStyle *style);
 void		setup_imgui_style(void);

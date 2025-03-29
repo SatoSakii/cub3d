@@ -6,14 +6,17 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:57:40 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/29 01:57:51 by stetrel          ###   ########.fr       */
+/*   Updated: 2025/03/29 20:34:16 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FEATURE_H
 # define FEATURE_H
 
-#include "libft_maths.h"
+# define SQUARE_SIZE 10
+# define MINIMAP_R 100
+# define OFFSET 20
+
 typedef struct s_destroy_wall
 {
 	t_ivec2d	pos[MAX_SAVE_WALLS];
@@ -36,10 +39,8 @@ typedef struct s_theta
 typedef struct s_minimap
 {
 	t_dvec2d	m;
-	t_ivec2d	x;
-	t_ivec2d	tmp;
-	t_ivec2d	origin;
-	float		player_angle;
-	t_ivec2d	map;
+	bool		flag;
+	t_theta		theta;
 }	t_minimap;
+
 #endif
