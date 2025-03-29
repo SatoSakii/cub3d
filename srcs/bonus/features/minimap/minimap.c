@@ -5,127 +5,149 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: stetrel <stetrel@42angouleme.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/28 22:14:45 by stetrel           #+#    #+#             */
-/*   Updated: 2025/03/29 06:13:46 by stetrel          ###   ########.fr       */
+/*   Created: 2025/03/12 12:03:42 by stetrel           #+#    #+#             */
+/*   Updated: 2025/03/29 18:03:43 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include <math.h>
 #include "cub3d.h"
 
 #define SQUARE_SIZE 10
 #define MINIMAP_R 100
 #define OFFSET 20
 
-static void	draw_square(t_game *game, t_dvec2d m, bool flag, t_theta theta)
+void rotate_point(float *x, float *y, float cx, float cy, float theta)
 {
-	t_minimap	mini;
+    float dx = *x - cx;
+    float dy = *y - cy;
+    *x = cx + (dx * cos(-theta) - dy * sin(-theta));
+    *y = cy + (dx * sin(-theta) + dy * cos(-theta));
 
-	ft_memset(&mini, 0, sizeof(mini));
-	mini.m = m;
-	printf("mini.m.x = %f | mini.m.y = %f\n", m.x, m.y);
-	while (mini.tmp.x < SQUARE_SIZE)
-	{
-		draw_square_line(game, mini, flag, theta);
-		mini.tmp.x++;
-		mini.x.x += theta.cos_theta;
-		mini.x.y += theta.sin_theta;
-	}
 }
 
-static void	draw_player(t_game *game, int map_x, int map_y)
+static void draw_minimap_background(t_game *game, int minimap_x, int minimap_y)
 {
-	int			radius;
-	int			index;
-	t_dvec2d	player;
-	t_ivec2d	d;
+    int dx, dy;
+    for (dy = -MINIMAP_R; dy <= MINIMAP_R; dy++)
+    {
+        for (dx = -MINIMAP_R; dx <= MINIMAP_R; dx++)
+        {
+            if (dx * dx + dy * dy <= MINIMAP_R * MINIMAP_R)
+            {
+                int index = (minimap_y + dy) * WINDOW_WIDTH + (minimap_x + dx);
+                if (index >= 0 && index < WINDOW_WIDTH * WINDOW_HEIGHT)
+                    game->scene[index].rgba = 0x000000FF;
+            }
+        }
+    }
+}
 
-	player.x = map_x + MINIMAP_R;
-	player.y = map_y + MINIMAP_R;
-	radius = SQUARE_SIZE / 4;
-	d.x = -radius;
-	while (d.x <= radius)
-	{
-		d.y = -radius;
-		while (d.y <= radius)
-		{
-			if (d.x * d.x + d.y * d.y <= radius * radius)
+static bool	is_valid_pixel(t_game *game, int index)
+{
+	return (index >= 0 && index < WINDOW_WIDTH * WINDOW_HEIGHT
+		&& game->scene[index].rgba == 0x000000FF);
+}
+
+static void draw_square(t_game *game, float x, float y, bool flag, float theta)
+{
+    int tmp_x, tmp_y;
+    int width = WINDOW_WIDTH;
+    int index;
+	float	xdx, xdy;
+	float	ydx, ydy;
+
+    tmp_x = 0;
+	xdx = 0;
+	xdy = 0;
+	float	cos_theta = cos(-theta);
+	float	sin_theta = sin(-theta);
+    while (tmp_x < SQUARE_SIZE)
+    {
+        tmp_y = 0;
+		ydx = 0;
+		ydy = 0;
+        while (tmp_y < SQUARE_SIZE)
+        {
+			size_t	px = (x + xdx - ydx);
+			size_t	py = (y + xdy + ydy);
+			index = py  * width + px;
+			if (!is_valid_pixel(game, index))
 			{
-				index = ((player.y + d.y)) * WINDOW_WIDTH + ((player.x + d.x));
-				if (index >= 0 && index < WINDOW_WIDTH * WINDOW_HEIGHT)
-					game->scene[index].rgba = 0xFCBA03FF;
+				tmp_y++;
+				ydx += sin_theta;
+				ydy += cos_theta;
+				continue ;
 			}
-			d.y++;
-		}
-		d.x++;
-	}
+            if (flag)
+                game->scene[index].rgba = 0x555C54FF;
+            else
+                game->scene[index].rgba = 0xF6F6DAFF;
+            tmp_y++;
+			ydx += sin_theta;
+			ydy += cos_theta;
+        }
+        tmp_x++;
+		xdx += cos_theta;
+		xdy += sin_theta;
+    }
 }
 
-void	init_map_pos(t_game *game, t_ivec2d *map, int pos)
+static void draw_player(t_game *game, int map_x, int map_y)
 {
-	if (pos & 0b1000)
-		map->y = OFFSET;
-	else
-		map->y = WINDOW_HEIGHT - ((game->map.height
-					* SQUARE_SIZE) - MINIMAP_R) - OFFSET;
-	if (pos & 0b0010)
-		map->x = OFFSET;
-	else
-		map->x = WINDOW_WIDTH - ((game->map.width
-					* SQUARE_SIZE) - MINIMAP_R) + OFFSET;
+    float player_x = map_x + MINIMAP_R;
+    float player_y = map_y + MINIMAP_R;
+    int radius = SQUARE_SIZE / 4;
+    int dx, dy, index;
+
+    dx = -radius;
+    while (dx <= radius)
+    {
+        dy = -radius;
+        while (dy <= radius)
+        {
+            if (dx * dx + dy * dy <= radius * radius)
+            {
+                index = ((player_y + dy)) * WINDOW_WIDTH + ((player_x + dx));
+                if (index >= 0 && index < WINDOW_WIDTH * WINDOW_HEIGHT)
+                    game->scene[index].rgba = 0xFF00FFFF;
+            }
+            dy++;
+        }
+        dx++;
+    }
 }
 
-static bool	is_inside_minimap(t_dvec2d m, t_ivec2d map)
+void print_minimap(t_game *game, int pos)
 {
-	int	dx;
-	int	dy;
+    int origin_x = game->player.pos.x * SQUARE_SIZE - MINIMAP_R;
+    int origin_y = game->player.pos.y * SQUARE_SIZE - MINIMAP_R;
+    int map_x, map_y;
 
-	dx = m.x - (map.x + MINIMAP_R);
-	dy = m.y - (map.y + MINIMAP_R);
-	return (dx * dx + dy * dy < MINIMAP_R * MINIMAP_R);
-}
+    if (pos & 0b1000)
+        map_y = OFFSET;
+    else
+        map_y = WINDOW_HEIGHT - ((game->map.height * SQUARE_SIZE) - MINIMAP_R) - OFFSET;
 
-static void	draw_minimap_elements(t_game *game, t_ivec2d origin, t_ivec2d map,
-			float player_angle, t_theta theta)
-{
-	t_dvec2d	m;
-	size_t		y;
-	size_t		x;
-	bool		is_wall;
-
-	y = 0;
-	while (y < (size_t)game->map.height)
-	{
-		x = 0;
-		while (x < (size_t)game->map.width)
-		{
-			m.x = x * SQUARE_SIZE + map.x - origin.x;
-			m.y = y * SQUARE_SIZE + map.y - origin.y;
-			rotate_point(&m, map.x + MINIMAP_R, map.y
-				+ MINIMAP_R, player_angle);
-			if (is_inside_minimap(m, map))
-			{
-				is_wall = (game->map.grid[y][x] == '1');
-				draw_square(game, m, is_wall, theta);
-			}
-			x++;
-		}
-		y++;
-	}
-}
-
-void	print_minimap(t_game *game, int pos)
-{
-	t_ivec2d	origin;
-	t_ivec2d	map;
-	t_theta		theta;
-	float		player_angle;
-
-	init_minimap(game, &origin, &map, &player_angle, pos);
-	draw_minimap_background(game, map.x + MINIMAP_R, map.y + MINIMAP_R);
-	theta.cos_theta = cos(-player_angle);
-	theta.sin_theta = sin(-player_angle);
-	draw_minimap_elements(game, origin, map, player_angle, theta);
-	draw_player(game, map.x, map.y);
+    if (pos & 0b0010)
+        map_x = OFFSET;
+    else
+        map_x = WINDOW_WIDTH - ((game->map.width * SQUARE_SIZE) - MINIMAP_R) + OFFSET;
+    draw_minimap_background(game, map_x + MINIMAP_R, map_y + MINIMAP_R);
+	float player_angle = -atan2f(game->player.dir.x, game->player.dir.y) + M_PI;
+    for (size_t y = 0; y < (size_t)game->map.height; y++)
+    {
+        for (size_t x = 0; x < (size_t)game->map.width; x++)
+        {
+            float mx = x * SQUARE_SIZE + map_x - origin_x;
+            float my = y * SQUARE_SIZE + map_y - origin_y;
+			rotate_point(&mx, &my, map_x + MINIMAP_R, map_y + MINIMAP_R, player_angle);
+            if ((mx - (map_x + MINIMAP_R)) * (mx - (map_x + MINIMAP_R)) +
+                (my - (map_y + MINIMAP_R)) * (my - (map_y + MINIMAP_R)) <= MINIMAP_R * MINIMAP_R)
+            {
+                bool is_wall = (game->map.grid[y][x] == '1');
+                draw_square(game, mx, my, is_wall, player_angle);
+            }
+        }
+    }
+    draw_player(game, map_x, map_y);
 }

@@ -6,7 +6,7 @@
 #    By: albernar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 17:32:26 by albernar          #+#    #+#              #
-#    Updated: 2025/03/29 05:50:58 by stetrel          ###   ########.fr        #
+#    Updated: 2025/03/29 17:53:02 by stetrel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,7 +104,6 @@ SRCS_BONUS	:=	$(COMMON) \
 				$(BONUS_DIR)/utils/game/menu.c \
 				$(BONUS_DIR)/utils/render/background.c \
 				$(BONUS_DIR)/features/minimap/minimap.c \
-				$(BONUS_DIR)/features/minimap/minimap_utils.c \
 
 SRCS_BONUS		:=	$(addprefix $(SRC_DIR)/, $(SRCS_BONUS))
 SRCS_BONUS		+=	$(THIRD_PARTY)
