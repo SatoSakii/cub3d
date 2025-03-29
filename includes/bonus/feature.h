@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:57:40 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/29 04:28:31 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/29 21:30:23 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_features
 {
 	t_destroy_wall	destroy_wall;
 	char			is_door;
+	bool			wall_sprite;
 	bool			show_debug_menu;
 	bool			unlock_cursor;
 }	t_features;

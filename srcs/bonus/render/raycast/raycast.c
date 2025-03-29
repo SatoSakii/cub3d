@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 17:36:10 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/29 03:57:11 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/29 21:30:34 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	raycast(t_game *game)
 		perform_dda(&ray, game);
 		ray.hit = false;
 		game->features.is_door = 0;
+		game->features.wall_sprite = false;
 		check_hit(&ray, game, &side);
 		if (ray.hit)
 			finish_raycast(&ray, game, scene, (int [2]){side, x});

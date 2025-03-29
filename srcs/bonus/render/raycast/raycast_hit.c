@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 17:52:44 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/29 04:14:39 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/29 21:30:47 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ static void	check_hit_validity(t_ray *ray, t_game *game)
 		if (game->map.grid[ray->map.y][ray->map.x] == 'C')
 		{
 			game->features.is_door = 'C';
+			ray->hit = true;
+		}
+		if (game->map.grid[ray->map.y][ray->map.x] == '2')
+		{
+			game->features.wall_sprite = true;
 			ray->hit = true;
 		}
 	}

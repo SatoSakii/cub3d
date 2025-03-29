@@ -6,7 +6,7 @@
 #    By: albernar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 17:32:26 by albernar          #+#    #+#              #
-#    Updated: 2025/03/29 04:33:07 by albernar         ###   ########.fr        #
+#    Updated: 2025/03/29 20:40:43 by albernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,8 @@ THIRD_PARTY	:=	$(addprefix $(THIRDPARTY_PATH)/srcs/, $(THIRDPARTY))
 COMMON		:=	$(COMMON_DIR)/parsing/args/args_validation.c \
 				$(COMMON_DIR)/parsing/data/colors/parse_colors.c \
 				$(COMMON_DIR)/parsing/data/map/map_creator.c \
+				$(COMMON_DIR)/parsing/data/map/map_floodfill_utils.c \
+				$(COMMON_DIR)/parsing/data/map/map_floodfill.c \
 				$(COMMON_DIR)/parsing/data/map/map_validation.c \
 				$(COMMON_DIR)/parsing/data/map/parse_map.c \
 				$(COMMON_DIR)/parsing/data/textures/parse_textures.c \

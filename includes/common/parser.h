@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 11:43:49 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/18 18:51:30 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/29 21:15:16 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Invalid extension type\0Invalid file\0Permission denied\0\
 No such file or directory\0Duplicate textures found\0\
 Duplicate colors found\0Invalid texture path\0\
 Invalid color\0Invalid line\0Missing infos\0Invalid tile\0Too much player\0\
-Missing player\0Error while allocating memory\0"
+Missing player\0Error while allocating memory\0Map is not closed"
 # define PROCESS_ERR		-1
 # define PROCESS_OK			0
 # define PROCESS_SKIP_LINE	2
@@ -46,6 +46,7 @@ typedef enum e_error
 	ERR_TOO_MUCH_PLY = ERR_INVALID_TILE + sizeof("Invalid tile"),
 	ERR_NO_PLY = ERR_TOO_MUCH_PLY + sizeof("Too much player"),
 	ERR_MALLOC = ERR_NO_PLY + sizeof("Missing player"),
+	ERR_FLOODFILL = ERR_MALLOC + sizeof("Error while allocating memory"),
 }	t_error;
 
 typedef struct s_error_ctx
@@ -58,6 +59,14 @@ typedef struct s_error_ctx
 	int		error_len;
 	int		line_num;
 }	t_error_ctx;
+
+typedef struct s_floodfill
+{
+	unsigned int	total;
+	t_ivec2d		save;
+	bool			total_reached;
+	bool			error;
+}	t_floodfill;
 
 typedef struct s_game	t_game;
 
@@ -79,10 +88,15 @@ void	apply_ctx(t_error_ctx *ctx, int error_len, int error_pos);
 void	skip_spaces(char **line);
 int		check_line_validity(t_error_ctx *ctx, char *line, int *found);
 int		info_hasspace(char **line, t_error_ctx *ctx, t_event *event);
+int		check_charset(char *line, char *charset, int step);
 
 // Map
 void	fill_map(int fd, t_error_ctx *ctx, t_game *game);
 int		check_map_validity(t_game *game, t_error_ctx *ctx);
 int		parse_map(int fd, t_error_ctx *ctx, t_game *game);
+int		map_floodfill(t_game *game, t_error_ctx *ctx);
+size_t	ft_strscount(char **arr);
+int		find_next_zero(char **map, int *x, int *y);
+char	**copy_map(t_error_ctx *ctx, char **map);
 
 #endif
