@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:29:02 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/28 23:43:04 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/29 01:50:14 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct s_game
 	mlx_color	*scene;
 	t_features	features;
 	t_main_menu	main_menu;
-	t_player	other_player[MAX_PLAYERS - 1];
 }	t_game;
 
 #endif

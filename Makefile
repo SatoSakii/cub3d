@@ -6,7 +6,7 @@
 #    By: albernar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 17:32:26 by albernar          #+#    #+#              #
-#    Updated: 2025/03/28 22:27:58 by albernar         ###   ########.fr        #
+#    Updated: 2025/03/29 01:47:23 by albernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,6 +93,7 @@ SRCS_BONUS	:=	$(COMMON) \
 				$(BONUS_DIR)/menu/style/style.c \
 				$(BONUS_DIR)/menu/utils/components.c \
 				$(BONUS_DIR)/menu/utils/controls_components.c \
+				$(BONUS_DIR)/menu/utils/debug_menu.c \
 				$(BONUS_DIR)/menu/utils/menu.c \
 				$(BONUS_DIR)/menu/draw_window.c \
 				$(BONUS_DIR)/render/game/game_render.c \
