@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 22:01:28 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/23 21:13:27 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/29 04:11:33 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ static void	update_pos_collide(t_game *game, t_player *player, t_dvec2d pos)
 	check_x = (t_ivec2d){(int)floor(pos.x + offset.x),
 		(int)floor(player->pos.y)};
 	can_move.x = 1;
-	if (check_x.x >= 0 && check_x.x < (int)game->map.width
-		&& check_x.y >= 0 && check_x.y < (int)game->map.height
-		&& game->map.grid[check_x.y][check_x.x] == '1')
+	if (check_x.x >= 0 && check_x.x < (int)game->map.width && check_x.y >= 0
+		&& check_x.y < (int)game->map.height && (game->map.grid[check_x.y]
+			[check_x.x] == '1' || game->map.grid[check_x.y][check_x.x] == 'C'))
 		can_move.x = 0;
 	check_y = (t_ivec2d){(int)floor(player->pos.x),
 		(int)floor(pos.y + offset.y)};
 	can_move.y = 1;
-	if (check_y.x >= 0 && check_y.x < (int)game->map.width
-		&& check_y.y >= 0 && check_y.y < (int)game->map.height
-		&& game->map.grid[check_y.y][check_y.x] == '1')
+	if (check_y.x >= 0 && check_y.x < (int)game->map.width && check_y.y >= 0
+		&& check_y.y < (int)game->map.height && (game->map.grid[check_y.y]
+			[check_y.x] == '1' || game->map.grid[check_y.y][check_y.x] == 'C'))
 		can_move.y = 0;
 	if (can_move.x)
 		player->pos.x = pos.x;

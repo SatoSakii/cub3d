@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 16:41:53 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/29 01:49:08 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/29 04:10:09 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,7 @@ void	event_keydown(int keycode, void *param)
 	}
 	if (game->main_menu == IN_GAME && game->controls.keys[4].state == DOWN)
 		game->player.is_running = true;
+	if (game->main_menu == IN_GAME && game->controls.keys[7].state == DOWN)
+		open_door(game);
 	handle_change_keybinds(game, keycode);
 }

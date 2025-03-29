@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:24:02 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/28 19:16:06 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/29 04:00:35 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define DEFAULT_MAX_SPEED_SPRINT	8.0
 # define DEFAULT_STEP_SPEED			0.25
 # define DEFAULT_SENSITIVITY		1.0
+# define INTERACT_DOOR_DISTANCE		1.5
 # define DEFAULT_ROTATE_SPEED		1.0
 # define DELETE_WALL_DISTANCE		1.5
 # define SLIDE_WALL_OFFSET			0.1

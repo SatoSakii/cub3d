@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:29:02 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/29 01:50:14 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/29 03:58:30 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_game
 	t_textures	so;
 	t_textures	we;
 	t_textures	ea;
+	t_textures	door;
 	t_colors	floor;
 	t_colors	ceiling;
 	t_player	player;

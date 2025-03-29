@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 16:37:45 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/28 19:20:11 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/29 03:56:58 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ static int	init_textures_regions(t_game *game, t_mlx *mlx)
 			* (game->we.width * game->we.height));
 	game->ea.pixels = malloc(sizeof(mlx_color)
 			* (game->ea.width * game->ea.height));
+	game->door.pixels = malloc(sizeof(mlx_color)
+			* (game->door.width * game->door.height));
 	if (!game->no.pixels || !game->so.pixels
-		|| !game->we.pixels || !game->ea.pixels)
+		|| !game->we.pixels || !game->ea.pixels || !game->door.pixels)
 		return (PROCESS_ERR);
 	mlx_get_image_region(mlx->ctx, game->no.img, 0, 0,
 		game->no.width, game->no.height, game->no.pixels);
@@ -33,6 +35,8 @@ static int	init_textures_regions(t_game *game, t_mlx *mlx)
 		game->we.width, game->we.height, game->we.pixels);
 	mlx_get_image_region(mlx->ctx, game->ea.img, 0, 0,
 		game->ea.width, game->ea.height, game->ea.pixels);
+	mlx_get_image_region(mlx->ctx, game->door.img, 0, 0,
+		game->door.width, game->door.height, game->door.pixels);
 	return (PROCESS_OK);
 }
 
@@ -46,7 +50,10 @@ static int	init_textures(t_game *game, t_mlx *mlx)
 			&game->we.width, &game->we.height);
 	game->ea.img = mlx_new_image_from_file(mlx->ctx, game->ea.path,
 			&game->ea.width, &game->ea.height);
-	if (!game->no.img || !game->so.img || !game->we.img || !game->ea.img)
+	game->door.img = mlx_new_image_from_file(mlx->ctx, game->door.path,
+			&game->door.width, &game->door.height);
+	if (!game->no.img || !game->so.img || !game->we.img || !game->ea.img
+		|| !game->door.img)
 		return (PROCESS_ERR);
 	return (init_textures_regions(game, mlx));
 }

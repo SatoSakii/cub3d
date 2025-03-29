@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:06:20 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/29 01:47:48 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/29 04:04:39 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,7 @@ void		controls_menu(t_game *game);
 void		draw_controls_buttons(const char *text, t_ivec2d pos,
 				t_game *game, int i);
 void		draw_debug_menu(t_game *game);
+void		init_ray_custom(t_game *game, t_ray *ray);
+void		open_door(t_game *game);
 
 #endif
