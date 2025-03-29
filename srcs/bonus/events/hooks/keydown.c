@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 16:41:53 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/29 04:10:09 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/29 04:32:16 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,14 @@ void	event_keydown(int keycode, void *param)
 	if (keycode == SDL_SCANCODE_INSERT)
 		game->features.show_debug_menu = !game->features.show_debug_menu;
 	while (++i < len)
-	{
 		if (keycode == game->controls.keys[i].keycode)
 			game->controls.keys[i].state = DOWN;
-	}
 	if (game->main_menu == IN_GAME && game->controls.keys[4].state == DOWN)
 		game->player.is_running = true;
+	if (game->main_menu == IN_GAME && game->controls.keys[5].state == DOWN)
+		destroy_wall(game);
+	if (game->main_menu == IN_GAME && game->controls.keys[6].state == DOWN)
+		restore_wall(game);
 	if (game->main_menu == IN_GAME && game->controls.keys[7].state == DOWN)
 		open_door(game);
 	handle_change_keybinds(game, keycode);
