@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 02:36:04 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/29 01:50:42 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/29 02:18:49 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 void	draw_window(t_game *game, __attribute__ ((unused)) t_mlx *mlx)
 {
-	if (game->features.show_debug_menu)
-	{
+	if (game->features.show_debug_menu && game->main_menu == IN_GAME)
 		draw_debug_menu(game);
-		return ;
-	}
 	if (game->main_menu == IN_GAME)
 		return ;
 	draw_title();
