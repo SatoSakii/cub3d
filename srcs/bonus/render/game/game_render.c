@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 03:32:04 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/25 03:49:11 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/29 05:56:50 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	game_render(t_game *game, double delta_time, t_tribool block)
 		move_player(&game->player, MOVE_RIGHT);
 	update_player(game, &game->player, delta_time);
 	rotate_player(game, &game->player, delta_time);
+	print_minimap(game, 0b1010);
 	mlx_pixel_put_array(game->mlx.ctx, game->mlx.win,
 		0, 0, game->scene, WINDOW_WIDTH * WINDOW_HEIGHT);
 }
