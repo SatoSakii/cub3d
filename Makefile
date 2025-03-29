@@ -6,7 +6,7 @@
 #    By: albernar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 17:32:26 by albernar          #+#    #+#              #
-#    Updated: 2025/03/29 20:40:43 by albernar         ###   ########.fr        #
+#    Updated: 2025/03/29 23:15:50 by albernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,8 +91,10 @@ SRCS_BONUS	:=	$(COMMON) \
 				$(BONUS_DIR)/events/hooks/window.c \
 				$(BONUS_DIR)/events/player/collision.c \
 				$(BONUS_DIR)/events/player/move.c \
-				$(BONUS_DIR)/features/doors/raycast_door.c \
 				$(BONUS_DIR)/features/destroy_wall/destroy_wall.c \
+				$(BONUS_DIR)/features/doors/raycast_door.c \
+				$(BONUS_DIR)/features/minimap/minimap.c \
+				$(BONUS_DIR)/features/minimap/minimap_utils.c \
 				$(BONUS_DIR)/features/utils/ray_init.c \
 				$(BONUS_DIR)/menu/style/colors.c \
 				$(BONUS_DIR)/menu/style/style.c \

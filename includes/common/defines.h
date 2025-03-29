@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:24:02 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/29 21:32:31 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/29 23:11:17 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,8 @@
 # define DEFAULT_FPS_GOAL			144
 # define DEFAULT_SPRINT_SPEED		4.0
 # define DEFAULT_PLANE				0.70
+# define MINIMAP_SQUARE_SIZE		10
+# define MINIMAP_RADIUS				100
+# define MINIMAP_OFFSET				20
 
 #endif

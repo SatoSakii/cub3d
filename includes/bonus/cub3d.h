@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:06:20 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/29 04:32:48 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/29 23:18:17 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,10 @@ void		init_ray_custom(t_game *game, t_ray *ray);
 void		open_door(t_game *game);
 void		destroy_wall(t_game *game);
 void		restore_wall(t_game *game);
+void		process_pixel(t_game *game, int index, bool flag);
+void		init_minimap_position(t_game *game, int pos, t_ivec2d *map);
+void		rotate_point(t_dvec2d *m, float cx, float cy, t_fvec2d theta);
+void		draw_minimap_background(t_game *game, int minimap_x, int minimap_y);
+void		print_minimap(t_game *game, int pos);
 
 #endif
