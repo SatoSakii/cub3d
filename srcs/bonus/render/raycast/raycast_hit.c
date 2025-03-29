@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 17:52:44 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/29 21:30:47 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/29 22:58:34 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ static void	set_wall_side(int *side, t_ray *ray, int _side)
 static void	check_hit_validity(t_ray *ray, t_game *game)
 {
 	if (ray->map.x >= 0 && ray->map.x < (int)game->map.width - 1
-		&& ray->map.y >= 0 && ray->map.y < (int)game->map.height)
+		&& ray->map.y >= 0 && ray->map.y < (int)game->map.height
+		&& ray->map.x < (int)ft_strlen(game->map.grid[ray->map.y]) - 1
+		&& game->map.grid[ray->map.y][ray->map.x] != ' ')
 	{
 		if (game->map.grid[ray->map.y][ray->map.x] == '1')
 			ray->hit = true;

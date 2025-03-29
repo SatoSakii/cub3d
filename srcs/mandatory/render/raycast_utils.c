@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 01:36:32 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/24 16:37:27 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/29 22:55:09 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ bool	is_insidewall(t_game *game)
 	return (game->player.pos.x >= 0
 		&& game->player.pos.x < game->map.width
 		&& game->player.pos.y >= 0 && game->player.pos.y < game->map.height
+		&& pos.x < (int)ft_strlen(game->map.grid[pos.y])
 		&& game->map.grid[pos.y][pos.x] == '1');
 }
 
@@ -59,7 +60,9 @@ static int	check_state(t_ray *ray, bool inside_wall, t_game *game, int *side)
 	if (!inside_wall && (ray->sidedist.y - ray->deltadist.y) > MAX_RAY_DIST)
 		return (2);
 	else if (ray->map.x >= 0 && ray->map.x < (int)game->map.width - 1
-		&& ray->map.y >= 0 && ray->map.y < (int)game->map.height)
+		&& ray->map.y >= 0 && ray->map.y < (int)game->map.height
+		&& ray->map.x < (int)ft_strlen(game->map.grid[ray->map.y]) - 1
+		&& game->map.grid[ray->map.y][ray->map.x] != ' ')
 	{
 		if (inside_wall)
 		{

@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 22:01:28 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/29 21:38:16 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/29 23:00:01 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 static void	check_possible_tile(t_game *game, t_ivec2d check, int *can_move)
 {
 	if (check.x >= 0 && check.x < (int)game->map.width
-		&& check.y >= 0 && check.y < (int)game->map.height)
+		&& check.y >= 0 && check.y < (int)game->map.height
+		&& check.x < (int)ft_strlen(game->map.grid[check.y]))
 	{
 		if (game->map.grid[check.y][check.x] == '1')
 			*can_move = 0;
