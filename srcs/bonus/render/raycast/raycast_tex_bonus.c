@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 17:57:26 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/30 15:40:49 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/30 15:55:19 by stetrel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	calculate_texture_coordinates(double wall_x, t_textures *texture,
 	int side, t_ivec2d *tex)
 {
 	tex->x = (int)(wall_x * (double)texture->width);
-	if ((side == SOUTH && tex->x > 0)
-		|| (side == WEST && tex->x < texture->width - 1))
+	if ((side == NORTH && tex->x > 0)
+		|| (side == EAST && tex->x < texture->width - 1))
 		tex->x = texture->width - tex->x - 1;
 	if (tex->x < 0)
 		tex->x = 0;

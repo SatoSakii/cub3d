@@ -1,0 +1,23 @@
+NO textures/Wall_Base.png
+SO textures/Wall_Variation.png
+EA textures/redbrick.png
+WE textures/bluestone.png
+
+DO textures/DoorT.png
+
+F 50,50,50
+C 200,200,200
+
+S1 textures/sprites/img1.png
+S2 textures/sprites/img2.png
+S3 textures/sprites/img3.png
+
+1111111111111111111
+1000000000000000001
+10111110111C0111101
+1000001000001000001
+111101111N011101111
+100001000O100001001
+1011111111111111101
+1000000000000000001
+1111111111111111111

@@ -1,0 +1,11 @@
+NO textures/debug/north.png
+SO textures/debug/south.png
+EA textures/debug/east.png
+WE textures/debug/west.png
+
+C 70,130,180
+F 50,50,50
+
+ 1
+1S1
+ 1
