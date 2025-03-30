@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vk_render.h                                        :+:      :+:    :+:   */
+/*   menu_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/14 19:11:33 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/30 14:46:08 by albernar         ###   ########.fr       */
+/*   Created: 2025/03/21 19:46:01 by albernar          #+#    #+#             */
+/*   Updated: 2025/03/30 15:27:24 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VK_RENDER_H
-# define VK_RENDER_H
-# include "loader.h"
-# include "vulkan_manager.h"
-# define CIMGUI_DEFINE_ENUMS_AND_STRUCTS
-# include "cimgui.h"
-# include "cimgui_impl.h"
-# include "cub3d_bonus.h"
+#include "cub3d_bonus.h"
 
-typedef struct s_mlx	t_mlx;
-
-void	draw_window(t_game *game, t_mlx *mlx);
-void	init_renderer(t_mlx *mlx);
-void	destroy_renderer(t_mlx *mlx);
-void	begin_render(VkCommandBuffer cmd, void *param);
-
-#endif
+t_tribool	block_game(t_game *game)
+{
+	if (game->features.unlock_cursor)
+		return (TRIBOOL_UNSET);
+	if (game->main_menu != IN_GAME)
+		return (TRIBOOL_TRUE);
+	return (TRIBOOL_FALSE);
+}

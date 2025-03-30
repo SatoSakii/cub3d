@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 04:14:25 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/29 21:16:02 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/30 15:07:33 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ int	parse_map(int fd, t_error_ctx *ctx, t_game *game)
 		return (PROCESS_ERR);
 	if (map_floodfill(game, ctx) == PROCESS_ERR)
 		return (PROCESS_ERR);
+	game->map.grid[(int)game->player.pos.y][(int)game->player.pos.x] = '0';
 	return (PROCESS_OK);
 }

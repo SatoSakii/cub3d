@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:24:02 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/29 23:11:17 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/30 15:29:41 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define SLIDE_WALL_OFFSET			0.1
 # define MAX_SAVE_WALLS				10
 # define STEP_PER_UPDATE_WALL		10000
-# define TIME_BEETWEEN_FPS_PRINT	0.1 // in seconds
+# define TIME_BEETWEEN_FPS_PRINT	0.1
 # define DEFAULT_FPS_GOAL			144
 # define DEFAULT_SPRINT_SPEED		4.0
 # define DEFAULT_PLANE				0.70

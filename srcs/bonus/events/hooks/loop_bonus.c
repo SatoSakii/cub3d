@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vk_render.h                                        :+:      :+:    :+:   */
+/*   loop_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/14 19:11:33 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/30 14:46:08 by albernar         ###   ########.fr       */
+/*   Created: 2025/03/21 17:04:07 by albernar          #+#    #+#             */
+/*   Updated: 2025/03/30 15:26:48 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VK_RENDER_H
-# define VK_RENDER_H
-# include "loader.h"
-# include "vulkan_manager.h"
-# define CIMGUI_DEFINE_ENUMS_AND_STRUCTS
-# include "cimgui.h"
-# include "cimgui_impl.h"
-# include "cub3d_bonus.h"
+#include "cub3d_bonus.h"
 
-typedef struct s_mlx	t_mlx;
+void	event_loop(void *param)
+{
+	t_game		*game;
+	double		delta_time;
+	t_tribool	block;
 
-void	draw_window(t_game *game, t_mlx *mlx);
-void	init_renderer(t_mlx *mlx);
-void	destroy_renderer(t_mlx *mlx);
-void	begin_render(VkCommandBuffer cmd, void *param);
-
-#endif
+	game = (t_game *)param;
+	delta_time = get_delta_time();
+	mlx_clear_window(game->mlx.ctx, game->mlx.win,
+		(mlx_color){.rgba = 0x000000FF});
+	block = block_game(game);
+	raycast(game);
+	if (block != TRIBOOL_TRUE)
+		game_render(game, delta_time, block);
+	print_fps();
+}

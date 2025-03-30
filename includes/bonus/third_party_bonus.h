@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vk_render.h                                        :+:      :+:    :+:   */
+/*   third_party_bonus.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/14 19:11:33 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/30 14:46:08 by albernar         ###   ########.fr       */
+/*   Created: 2025/03/18 18:20:06 by albernar          #+#    #+#             */
+/*   Updated: 2025/03/30 15:26:32 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VK_RENDER_H
-# define VK_RENDER_H
-# include "loader.h"
-# include "vulkan_manager.h"
-# define CIMGUI_DEFINE_ENUMS_AND_STRUCTS
-# include "cimgui.h"
-# include "cimgui_impl.h"
-# include "cub3d_bonus.h"
+#ifndef THIRD_PARTY_BONUS_H
+# define THIRD_PARTY_BONUS_H
 
-typedef struct s_mlx	t_mlx;
-
-void	draw_window(t_game *game, t_mlx *mlx);
-void	init_renderer(t_mlx *mlx);
-void	destroy_renderer(t_mlx *mlx);
-void	begin_render(VkCommandBuffer cmd, void *param);
+typedef struct s_render_data
+{
+	VkInstance			instance;
+	VkPhysicalDevice	physical_device;
+	VkDevice			device;
+	VkDescriptorPool	pool;
+	VkRenderPass		renderpass;
+	VkFramebuffer		*framebuffers;
+	VkExtent2D			swapchain_extent;
+}	t_render_data;
 
 #endif

@@ -6,7 +6,7 @@
 #    By: albernar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 17:32:26 by albernar          #+#    #+#              #
-#    Updated: 2025/03/29 23:15:50 by albernar         ###   ########.fr        #
+#    Updated: 2025/03/30 14:45:44 by albernar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,38 +82,38 @@ SRCS		:=	$(COMMON) \
 SRCS		:=	$(addprefix $(SRC_DIR)/, $(SRCS))
 
 SRCS_BONUS	:=	$(COMMON) \
-				$(BONUS_DIR)/core/main.c \
-				$(BONUS_DIR)/events/hooks/keydown.c \
-				$(BONUS_DIR)/events/hooks/keyup.c \
-				$(BONUS_DIR)/events/hooks/loop.c \
-				$(BONUS_DIR)/events/hooks/mousedown.c \
-				$(BONUS_DIR)/events/hooks/mouseup.c \
-				$(BONUS_DIR)/events/hooks/window.c \
-				$(BONUS_DIR)/events/player/collision.c \
-				$(BONUS_DIR)/events/player/move.c \
-				$(BONUS_DIR)/features/destroy_wall/destroy_wall.c \
-				$(BONUS_DIR)/features/doors/raycast_door.c \
-				$(BONUS_DIR)/features/minimap/minimap.c \
-				$(BONUS_DIR)/features/minimap/minimap_utils.c \
-				$(BONUS_DIR)/features/utils/ray_init.c \
-				$(BONUS_DIR)/menu/style/colors.c \
-				$(BONUS_DIR)/menu/style/style.c \
-				$(BONUS_DIR)/menu/utils/components.c \
-				$(BONUS_DIR)/menu/utils/controls_components.c \
-				$(BONUS_DIR)/menu/utils/debug_menu.c \
-				$(BONUS_DIR)/menu/utils/menu.c \
-				$(BONUS_DIR)/menu/draw_window.c \
-				$(BONUS_DIR)/render/game/game_render.c \
-				$(BONUS_DIR)/render/raycast/raycast_draw.c \
-				$(BONUS_DIR)/render/raycast/raycast_hit.c \
-				$(BONUS_DIR)/render/raycast/raycast_init.c \
-				$(BONUS_DIR)/render/raycast/raycast_tex.c \
-				$(BONUS_DIR)/render/raycast/raycast.c \
-				$(BONUS_DIR)/utils/game/free.c \
-				$(BONUS_DIR)/utils/game/init_mlx.c \
-				$(BONUS_DIR)/utils/game/init.c \
-				$(BONUS_DIR)/utils/game/menu.c \
-				$(BONUS_DIR)/utils/render/background.c \
+				$(BONUS_DIR)/core/main_bonus.c \
+				$(BONUS_DIR)/events/hooks/keydown_bonus.c \
+				$(BONUS_DIR)/events/hooks/keyup_bonus.c \
+				$(BONUS_DIR)/events/hooks/loop_bonus.c \
+				$(BONUS_DIR)/events/hooks/mousedown_bonus.c \
+				$(BONUS_DIR)/events/hooks/mouseup_bonus.c \
+				$(BONUS_DIR)/events/hooks/window_bonus.c \
+				$(BONUS_DIR)/events/player/collision_bonus.c \
+				$(BONUS_DIR)/events/player/move_bonus.c \
+				$(BONUS_DIR)/features/destroy_wall/destroy_wall_bonus.c \
+				$(BONUS_DIR)/features/doors/raycast_door_bonus.c \
+				$(BONUS_DIR)/features/minimap/minimap_bonus.c \
+				$(BONUS_DIR)/features/minimap/minimap_utils_bonus.c \
+				$(BONUS_DIR)/features/utils/ray_init_bonus.c \
+				$(BONUS_DIR)/menu/style/colors_bonus.c \
+				$(BONUS_DIR)/menu/style/style_bonus.c \
+				$(BONUS_DIR)/menu/utils/components_bonus.c \
+				$(BONUS_DIR)/menu/utils/controls_components_bonus.c \
+				$(BONUS_DIR)/menu/utils/debug_menu_bonus.c \
+				$(BONUS_DIR)/menu/utils/menu_bonus.c \
+				$(BONUS_DIR)/menu/draw_window_bonus.c \
+				$(BONUS_DIR)/render/game/game_render_bonus.c \
+				$(BONUS_DIR)/render/raycast/raycast_draw_bonus.c \
+				$(BONUS_DIR)/render/raycast/raycast_hit_bonus.c \
+				$(BONUS_DIR)/render/raycast/raycast_init_bonus.c \
+				$(BONUS_DIR)/render/raycast/raycast_tex_bonus.c \
+				$(BONUS_DIR)/render/raycast/raycast_bonus.c \
+				$(BONUS_DIR)/utils/game/free_bonus.c \
+				$(BONUS_DIR)/utils/game/init_mlx_bonus.c \
+				$(BONUS_DIR)/utils/game/init_bonus.c \
+				$(BONUS_DIR)/utils/game/menu_bonus.c \
+				$(BONUS_DIR)/utils/render/background_bonus.c \
 
 SRCS_BONUS		:=	$(addprefix $(SRC_DIR)/, $(SRCS_BONUS))
 SRCS_BONUS		+=	$(THIRD_PARTY)

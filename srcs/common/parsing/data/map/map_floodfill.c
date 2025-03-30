@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 18:57:08 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/29 21:39:06 by albernar         ###   ########.fr       */
+/*   Updated: 2025/03/30 14:34:04 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	flood_fill(int x, int y, char **map, t_floodfill *floodfill)
 	if (manage_recursion(map, floodfill, &x, &y))
 		return (PROCESS_ERR);
 	if (x < 0 || y < 0 || y >= (int)ft_strscount(map)
-		|| x >= (int)ft_strlen(map[y]) || ft_isspace(map[y][x]))
+		|| x >= (int)ft_strlen(map[y]))
 	{
 		floodfill->error = true;
 		return (PROCESS_ERR);
