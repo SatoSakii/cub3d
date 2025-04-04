@@ -6,7 +6,7 @@
 /*   By: albernar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 18:57:08 by albernar          #+#    #+#             */
-/*   Updated: 2025/03/30 14:34:04 by albernar         ###   ########.fr       */
+/*   Updated: 2025/04/04 21:30:10 by albernar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,21 @@ static int	managed_flood_fill(int player_x, int player_y,
 	return (ret);
 }
 
+static int	floodfill_from_player(t_game *game, char **map_copy,
+	t_floodfill *floodfill, t_error_ctx *ctx)
+{
+	if (managed_flood_fill(game->player.pos.x, game->player.pos.y,
+			map_copy, floodfill) != PROCESS_OK || floodfill->error)
+	{
+		ft_free2d((void **)map_copy);
+		apply_ctx(ctx, -1, -1);
+		ctx->line_content = NULL;
+		throw_err(ERR_FLOODFILL, ctx);
+		return (PROCESS_ERR);
+	}
+	return (PROCESS_OK);
+}
+
 int	map_floodfill(t_game *game, t_error_ctx *ctx)
 {
 	t_floodfill	floodfill;
@@ -85,6 +100,8 @@ int	map_floodfill(t_game *game, t_error_ctx *ctx)
 	ctx->line_content = NULL;
 	map_copy = copy_map(ctx, game->map.grid);
 	if (!map_copy)
+		return (PROCESS_ERR);
+	if (floodfill_from_player(game, map_copy, &floodfill, ctx) == PROCESS_ERR)
 		return (PROCESS_ERR);
 	while (find_next_zero(map_copy, &x, &y))
 	{
